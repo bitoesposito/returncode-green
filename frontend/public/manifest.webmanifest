@@ -1,11 +1,11 @@
 {
-  "name": "Pandom Stack",
-  "short_name": "Pandom",
-  "description": "A comprehensive security-first boilerplate for modern web applications with cookie-based authentication and GDPR compliance.",
+  "name": "Hash certs",
+  "short_name": "Hashcerts",
+  "description": "A comprehensive certificate management system with cookie-based authentication and GDPR compliance.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#de5219",
+  "theme_color": "#38BDF8",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
@@ -92,7 +92,7 @@
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Pandom Stack Desktop Interface"
+      "label": "Hash certs Desktop Interface"
     },
     {
       "src": "/screenshots/mobile.png",

@@ -88,7 +88,7 @@ export class MailService {
     ) {
         this.initializeTransporter();
         this.frontendUrl = this.configService.get<string>('FE_URL') || 'http://localhost:4200';
-        this.fromEmail = this.configService.get<string>('SMTP_USER') || 'noreply@pandomstack.com';
+        this.fromEmail = this.configService.get<string>('SMTP_USER') || 'noreply@hashcerts.com';
     }
 
     // ============================================================================
@@ -253,7 +253,7 @@ export class MailService {
             reset: 'Reset your password'
         };
 
-        return subjects[templateType] || 'Message from Pandom Stack';
+        return subjects[templateType] || 'Message from Hash certs';
     }
 
     /**

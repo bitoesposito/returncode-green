@@ -2,7 +2,7 @@
   "app": {
     "description": "A modern full-stack application with authentication, dashboard, and PWA capabilities",
     "enable-javascript": "Please enable JavaScript to continue using this application.",
-    "title": "PANDOM - Stack boilerplate"
+    "title": "Hash certs - Certificate management system"
   },
   "auth": {
     "login": {
