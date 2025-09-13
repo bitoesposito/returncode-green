@@ -1,24 +1,93 @@
-<main style="max-width: 1200px;" class="m-auto h-screen align-items-center justify-content-center flex flex-column p-3 gap-4 max-w-30rem text-center">
+<p-toast></p-toast>
+
+<!-- Dialog per richiedere il fullscreen -->
+<p-dialog 
+    [(visible)]="showFullscreenDialog" 
+    [modal]="true" 
+    [closable]="false" 
+    [draggable]="false" 
+    [resizable]="false"
+    styleClass=""
+    [style]="{ width: '500px' }">
+    <div class="flex flex-column gap-3 text-center">
+        <p class="text-lg m-0">
+            {{ 'quiz.fullscreen.required-message' | translate }}
+        </p>
+        <p class="text-color-secondary m-0">
+            {{ 'quiz.fullscreen.required-description' | translate }}
+        </p>
+        <div class="flex justify-content-center gap-2 mt-3">
+            <p-button 
+                [label]="'quiz.fullscreen.activate-button' | translate" 
+                icon="pi pi-expand" 
+                (click)="onActivateFullscreen()"
+                severity="primary"/>
+        </div>
+    </div>
+</p-dialog>
+
+<main *ngIf="!isQuizComplete" class="m-auto h-screen align-items-center justify-content-center flex flex-column p-3 gap-4 max-w-30rem text-center" style="max-width: 1200px;">
+    <p class="text-2xl font-bold select-none">{{ 'quiz.title' | translate }}</p>
+    <p class="text-color-secondary select-none">{{ 'quiz.description' | translate }}</p>
+
+    <div class="flex flex-column gap-2">
+        <p-button 
+            severity="secondary" 
+            outlined="true" 
+            styleClass="w-20rem" 
+            fluid="true" 
+            size="large" 
+            [label]="'quiz.answers.pray-to-god' | translate" 
+            [disabled]="!isFullscreenActive"
+            (click)="checkAnswer(1)"/>
+        <p-button 
+            severity="secondary" 
+            outlined="true" 
+            styleClass="w-20rem" 
+            fluid="true" 
+            size="large" 
+            [label]="'quiz.answers.hope-mom-saves' | translate" 
+            [disabled]="!isFullscreenActive"
+            (click)="checkAnswer(2)"/>
+        <p-button 
+            severity="secondary" 
+            outlined="true" 
+            styleClass="w-20rem" 
+            fluid="true" 
+            size="large" 
+            [label]="'quiz.answers.do-what-you-can' | translate" 
+            [disabled]="!isFullscreenActive"
+            (click)="checkAnswer(3)" />
+    </div>
+    
+    <!-- Indicatore di stato fullscreen -->
+    <div *ngIf="!isFullscreenActive" class="flex align-items-center gap-2 text-orange-500 mt-3">
+        <i class="pi pi-exclamation-triangle"></i>
+        <span class="text-sm">{{ 'quiz.fullscreen.required-indicator' | translate }}</span>
+    </div>
+</main>
+
+<main *ngIf="isQuizComplete" style="max-width: 1200px;" class="m-auto h-screen align-items-center justify-content-center flex flex-column p-3 gap-4 max-w-30rem text-center">
     <p-toast></p-toast>
-    <h1>Complimenti, hai completato il corso con successo!</h1>
-    <p>Ricevi il certificato di completamento del corso</p>
+    <h1>{{ 'quiz.completion.title' | translate }}</h1>
+    <p>{{ 'quiz.completion.description' | translate }}</p>
 
     <div class="flex gap-2 align-items-center">
         <i class="pi pi-check-circle text-2xl text-green-500"></i>
-        <p>10/10 domande corrette</p>
+        <p>{{ 'quiz.completion.score' | translate }}</p>
     </div>
 
     <div class="flex flex-column gap-2">
         <p-button 
-            label="Ricevi il certificato" 
+            [label]="'quiz.completion.certificate-button' | translate" 
             (click)="generateCertificate()"
             [loading]="isLoading"
             [disabled]="isLoading || !currentUser"/>
-        <p class="text-color-secondary text-xs">OPPURE</p>
+        <p class="text-color-secondary text-xs">{{ 'quiz.completion.or' | translate }}</p>
         <p-button 
             severity="secondary" 
             text="true" 
-            label="Torna alla home" 
+            [label]="'quiz.completion.home-button' | translate" 
             (click)="router.navigate(['/'])"
             [disabled]="isLoading"/>
     </div>

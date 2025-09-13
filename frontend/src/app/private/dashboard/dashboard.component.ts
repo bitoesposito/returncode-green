@@ -97,8 +97,8 @@ export class DashboardComponent implements OnInit {
               this.isLoadingCertificates = false;
               this.messageService.add({
                 severity: 'error',
-                summary: 'Errore',
-                detail: 'Impossibile caricare i certificati: ' + (error.message || 'Errore sconosciuto')
+                summary: this.translate.instant('common.error'),
+                detail: this.translate.instant('dashboard.certificates.messages.loading-error', { error: error.message || 'Errore sconosciuto' })
               });
             }
           });
@@ -110,8 +110,8 @@ export class DashboardComponent implements OnInit {
         this.isLoadingCertificates = false;
         this.messageService.add({
           severity: 'error',
-          summary: 'Errore',
-          detail: 'Impossibile recuperare i dati utente'
+          summary: this.translate.instant('common.error'),
+          detail: this.translate.instant('dashboard.certificates.messages.user-data-error')
         });
       }
     });
@@ -137,15 +137,15 @@ export class DashboardComponent implements OnInit {
         if (response.valid) {
           this.messageService.add({
             severity: 'success',
-            summary: 'Certificato Valido',
-            detail: 'Il certificato è autentico e non è stato modificato.',
+            summary: this.translate.instant('dashboard.certificates.messages.verification.valid-title'),
+            detail: this.translate.instant('dashboard.certificates.messages.verification.valid-detail'),
             life: 5000
           });
         } else {
           this.messageService.add({
             severity: 'error',
-            summary: 'Certificato Non Valido',
-            detail: 'Il certificato non è autentico o è stato modificato.',
+            summary: this.translate.instant('dashboard.certificates.messages.verification.invalid-title'),
+            detail: this.translate.instant('dashboard.certificates.messages.verification.invalid-detail'),
             life: 5000
           });
         }
@@ -154,8 +154,8 @@ export class DashboardComponent implements OnInit {
         this.isVerifyingCertificate = false;
         this.messageService.add({
           severity: 'error',
-          summary: 'Errore Verifica',
-          detail: 'Impossibile verificare il certificato: ' + (error.message || 'Errore sconosciuto'),
+          summary: this.translate.instant('dashboard.certificates.messages.verification.error-title'),
+          detail: this.translate.instant('dashboard.certificates.messages.verification.error-detail', { error: error.message || 'Errore sconosciuto' }),
           life: 5000
         });
       }
@@ -193,7 +193,9 @@ export class DashboardComponent implements OnInit {
    * Ottieni il testo dello stato del certificato
    */
   getCertificateStatusText(certificate: CertificateResponse): string {
-    return certificate.revoked ? 'Revocato' : 'Valido';
+    return certificate.revoked ? 
+      this.translate.instant('dashboard.certificates.status.revoked') : 
+      this.translate.instant('dashboard.certificates.status.valid');
   }
 
   /**

@@ -1,0 +1,38 @@
+/* Stili per il dialog di fullscreen */
+:host ::ng-deep .fullscreen-dialog {
+  .p-dialog {
+    z-index: 9999 !important;
+  }
+  
+  .p-dialog-header {
+    background-color: #fef3cd;
+    border-bottom: 1px solid #ffeaa7;
+  }
+  
+  .p-dialog-content {
+    padding: 1.5rem;
+  }
+}
+
+/* Stili per i pulsanti disabilitati */
+:host ::ng-deep .p-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Indicatore di stato fullscreen */
+.fullscreen-indicator {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

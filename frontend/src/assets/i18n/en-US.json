@@ -164,6 +164,34 @@
   "dashboard": {
     "letsStartLearning": "Let's start learning!",
     "selectCourse": "Choose a course to start your learning journey",
+    "certificates": {
+      "title": "Your Certificates",
+      "download": "Download",
+      "verify": "Verify",
+      "empty": {
+        "title": "No certificates yet",
+        "description": "Complete courses to get your first certificates!",
+        "start-course-button": "Start a course"
+      },
+      "status": {
+        "valid": "Valid",
+        "revoked": "Revoked",
+        "expired": "Expired"
+      },
+      "file-info": "{{type}} • {{size}} KB",
+      "messages": {
+        "loading-error": "Unable to load certificates: {{error}}",
+        "user-data-error": "Unable to retrieve user data",
+        "verification": {
+          "valid-title": "Valid Certificate",
+          "valid-detail": "The certificate is authentic and has not been modified.",
+          "invalid-title": "Invalid Certificate",
+          "invalid-detail": "The certificate is not authentic or has been modified.",
+          "error-title": "Verification Error",
+          "error-detail": "Unable to verify certificate: {{error}}"
+        }
+      }
+    },
     "confirm-dialog": {
       "create": {
         "cancel": "Cancel",
@@ -448,5 +476,43 @@
     "top-endpoints": "Top Endpoints",
     "error-breakdown": "Error Breakdown",
     "status-code": "Status Code"
+  },
+  "quiz": {
+    "title": "Survival course for this hackathon",
+    "description": "It would be nice to have someone to develop this application with, but unfortunately...",
+    "answers": {
+      "pray-to-god": "You must pray to god",
+      "hope-mom-saves": "Hope mom comes to save you",
+      "do-what-you-can": "You do what you can"
+    },
+    "fullscreen": {
+      "required-title": "Fullscreen Mode Required",
+      "required-message": "To ensure quiz integrity, fullscreen mode must be activated.",
+      "required-description": "This measure prevents inappropriate behavior during test execution.",
+      "activate-button": "Activate Fullscreen",
+      "required-indicator": "Fullscreen mode required to continue",
+      "warning-message": "You must be in fullscreen mode to answer the quiz"
+    },
+    "completion": {
+      "title": "Congratulations, you have successfully completed the course!",
+      "description": "Receive your course completion certificate",
+      "score": "1/1 questions correct",
+      "certificate-button": "Get certificate",
+      "home-button": "Back to home",
+      "or": "OR"
+    },
+    "errors": {
+      "user-not-found": "User not found",
+      "certificate-generation-failed": "Unable to generate certificate. Please try again later.",
+      "wrong-answer": "Wrong answer",
+      "fullscreen-required": "You must be in fullscreen mode to answer the quiz"
+    },
+    "success": {
+      "certificate-generated": "Certificate Generated!",
+      "certificate-redirect": "You will be redirected to the home page."
+    },
+    "warnings": {
+      "fullscreen-not-supported": "Unable to activate fullscreen. Make sure to allow fullscreen for this site."
+    }
   }
 }

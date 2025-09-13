@@ -164,6 +164,34 @@
   "dashboard": {
     "letsStartLearning": "Cominciamo a imparare!",
     "selectCourse": "Scegli un corso per iniziare il tuo percorso di apprendimento",
+    "certificates": {
+      "title": "I Tuoi Certificati",
+      "download": "Scarica",
+      "verify": "Verifica",
+      "empty": {
+        "title": "Nessun certificato ancora",
+        "description": "Completa i corsi per ottenere i tuoi primi certificati!",
+        "start-course-button": "Inizia un corso"
+      },
+      "status": {
+        "valid": "Valido",
+        "revoked": "Revocato",
+        "expired": "Scaduto"
+      },
+      "file-info": "{{type}} • {{size}} KB",
+      "messages": {
+        "loading-error": "Impossibile caricare i certificati: {{error}}",
+        "user-data-error": "Impossibile recuperare i dati utente",
+        "verification": {
+          "valid-title": "Certificato Valido",
+          "valid-detail": "Il certificato è autentico e non è stato modificato.",
+          "invalid-title": "Certificato Non Valido",
+          "invalid-detail": "Il certificato non è autentico o è stato modificato.",
+          "error-title": "Errore Verifica",
+          "error-detail": "Impossibile verificare il certificato: {{error}}"
+        }
+      }
+    },
     "confirm-dialog": {
       "create": {
         "cancel": "Annulla",
@@ -450,5 +478,43 @@
     "show-security-logs": "Mostra log di sicurezza",
     "user": "Utente",
     "verified": "profilo verificato"
+  },
+  "quiz": {
+    "title": "Corso di sopravvivenza a questo hackathon",
+    "description": "Sarebbe bello avere qualcuno con cui sviluppare questa applicazione, ma purtroppo...",
+    "answers": {
+      "pray-to-god": "Devi pregare dio",
+      "hope-mom-saves": "Speri che mamma venga a salvarti",
+      "do-what-you-can": "Si fa quel che si può"
+    },
+    "fullscreen": {
+      "required-title": "Modalità Fullscreen Richiesta",
+      "required-message": "Per garantire l'integrità del quiz, è necessario attivare la modalità a schermo intero.",
+      "required-description": "Questa misura previene comportamenti scorretti durante l'esecuzione del test.",
+      "activate-button": "Attiva Fullscreen",
+      "required-indicator": "Modalità fullscreen richiesta per continuare",
+      "warning-message": "Devi essere in modalità fullscreen per rispondere al quiz"
+    },
+    "completion": {
+      "title": "Complimenti, hai completato il corso con successo!",
+      "description": "Ricevi il certificato di completamento del corso",
+      "score": "1/1 domande corrette",
+      "certificate-button": "Ricevi il certificato",
+      "home-button": "Torna alla home",
+      "or": "OPPURE"
+    },
+    "errors": {
+      "user-not-found": "Utente non trovato",
+      "certificate-generation-failed": "Impossibile generare il certificato. Riprova più tardi.",
+      "wrong-answer": "Risposta errata",
+      "fullscreen-required": "Devi essere in modalità fullscreen per rispondere al quiz"
+    },
+    "success": {
+      "certificate-generated": "Certificato Generato!",
+      "certificate-redirect": "Stai per essere reindirizzato alla home."
+    },
+    "warnings": {
+      "fullscreen-not-supported": "Impossibile attivare il fullscreen. Assicurati di consentire il fullscreen per questo sito."
+    }
   }
 } 
