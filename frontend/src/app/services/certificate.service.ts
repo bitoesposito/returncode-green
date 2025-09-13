@@ -133,41 +133,20 @@ export class CertificateService {
   /**
    * Generate new certificate (admin only)
    * 
-   * Creates a new certificate for a user with file upload.
-   * Requires admin authentication and proper file data.
+   * Creates a new certificate for a user. The backend automatically generates
+   * a TXT file with course information and uploads it to MinIO storage.
+   * Requires admin authentication.
    * 
    * @param certificateData - Certificate generation data
-   * @param file - Certificate file (PDF or JSON)
    * @returns Observable with generated certificate data
    */
   generateCertificate(
-    certificateData: GenerateCertificateRequest, 
-    file: File
+    certificateData: GenerateCertificateRequest
   ): Observable<CertificateResponse> {
-    const formData = new FormData();
-    
-    // Append certificate data
-    formData.append('user_uuid', certificateData.user_uuid);
-    formData.append('course_name', certificateData.course_name);
-    
-    if (certificateData.description) {
-      formData.append('description', certificateData.description);
-    }
-    
-    if (certificateData.issued_date) {
-      formData.append('issued_date', certificateData.issued_date);
-    }
-    
-    if (certificateData.metadata) {
-      formData.append('metadata', JSON.stringify(certificateData.metadata));
-    }
-    
-    // Append file
-    formData.append('certificate_file', file, file.name);
-
     return this.http.post<ApiResponse<CertificateResponse>>(
       this.apiUrl,
-      formData
+      certificateData,
+      { withCredentials: true }
     ).pipe(
       map(response => {
         if (response.success) {
@@ -194,7 +173,8 @@ export class CertificateService {
       `${this.apiUrl}/${certificateId}/download`,
       { 
         responseType: 'blob',
-        observe: 'response'
+        observe: 'response',
+        withCredentials: true
       }
     ).pipe(
       map(response => {
@@ -219,7 +199,8 @@ export class CertificateService {
    */
   getUserCertificates(userId: string): Observable<CertificateResponse[]> {
     return this.http.get<ApiResponse<CertificateResponse[]>>(
-      `${this.apiUrl}/user/${userId}`
+      `${this.apiUrl}/user/${userId}`,
+      { withCredentials: true }
     ).pipe(
       map(response => {
         if (response.success) {
@@ -248,7 +229,8 @@ export class CertificateService {
   ): Observable<void> {
     return this.http.post<ApiResponse<void>>(
       `${this.apiUrl}/${certificateId}/revoke`,
-      revocationData
+      revocationData,
+      { withCredentials: true }
     ).pipe(
       map(response => {
         if (response.success) {
@@ -280,7 +262,7 @@ export class CertificateService {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = filename || `certificate-${certificateId}.pdf`;
+        link.download = filename || `certificate-${certificateId}.txt`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

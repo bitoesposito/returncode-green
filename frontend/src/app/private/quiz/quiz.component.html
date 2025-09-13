@@ -1,4 +1,5 @@
 <main style="max-width: 1200px;" class="m-auto h-screen align-items-center justify-content-center flex flex-column p-3 gap-4 max-w-30rem text-center">
+    <p-toast></p-toast>
     <h1>Complimenti, hai completato il corso con successo!</h1>
     <p>Ricevi il certificato di completamento del corso</p>
 
@@ -8,8 +9,17 @@
     </div>
 
     <div class="flex flex-column gap-2">
-        <p-button label="Ricevi il certificato" />
+        <p-button 
+            label="Ricevi il certificato" 
+            (click)="generateCertificate()"
+            [loading]="isLoading"
+            [disabled]="isLoading || !currentUser"/>
         <p class="text-color-secondary text-xs">OPPURE</p>
-        <p-button severity="secondary" text="true" label="Torna alla home" (click)="router.navigate(['/'])"/>
+        <p-button 
+            severity="secondary" 
+            text="true" 
+            label="Torna alla home" 
+            (click)="router.navigate(['/'])"
+            [disabled]="isLoading"/>
     </div>
 </main>

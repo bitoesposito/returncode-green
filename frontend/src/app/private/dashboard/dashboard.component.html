@@ -19,4 +19,86 @@
         <app-course-cards/>
         <app-course-cards/>
     </div>
+
+    <!-- Certificates Section -->
+    <div class="mt-4">
+        <div class="flex justify-content-between align-items-center mb-3">
+            <h2 class="text-xl font-semibold m-0">I Tuoi Certificati</h2>
+        </div>
+        
+        <!-- Loading State -->
+        <div *ngIf="isLoadingCertificates" class="flex justify-content-center align-items-center p-4">
+            <p-progressSpinner [style]="{'width': '50px', 'height': '50px'}" strokeWidth="4" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+        </div>
+
+        <div *ngIf="!isLoadingCertificates && certificates.length > 0" class="courses-grid">
+            <div *ngFor="let certificate of certificates" class="certificate-card border-2 border-round-md surface-border p-3 hover:surface-ground transition-colors h-full">
+                
+                <!-- Certificate Information -->
+                <div class="certificate-info flex flex-column gap-2">
+                    <!-- Certificate Title -->
+                    <h3 class="text-lg font-bold text-900 m-0">{{ certificate.course_name }}</h3>
+                    
+                    <!-- Certificate Description -->
+                    <p class="text-sm text-600 m-0 line-height-1" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical;" *ngIf="certificate.description">
+                        {{ certificate.description }}
+                    </p>
+                    
+                    <!-- Certificate Meta Information -->
+                    <div class="certificate-meta flex flex-column gap-2 mt-2">
+                        <!-- Status and Date -->
+                        <div class="flex align-items-center gap-3">
+                            <span class="certificate-status px-2 py-1 border-round text-xs font-semibold" 
+                                  [ngClass]="getCertificateStatusClass(certificate)">
+                                {{ getCertificateStatusText(certificate) }}
+                            </span>
+                            <span class="certificate-date text-xs text-600">
+                                <i class="pi pi-calendar mr-1"></i>
+                                {{ formatDate(certificate.issued_date) }}
+                            </span>
+                        </div>
+                        
+                        <!-- File Info -->
+                        <div class="certificate-file-info">
+                            <span class="text-xs text-500">
+                                <i class="pi pi-file mr-1"></i>
+                                {{ certificate.content_type }} • {{ getFileSizeInKB(certificate.file_size) }} KB
+                            </span>
+                        </div>
+                        
+                        <!-- Actions -->
+                        <div class="flex align-items-center justify-content-between">
+                            <p-button 
+                                label="Scarica" 
+                                icon="pi pi-download" 
+                                size="small"
+                                severity="secondary"
+                                (click)="downloadCertificate(certificate.id)"
+                                [disabled]="certificate.revoked">
+                            </p-button>
+                            <p-button 
+                                label="Verifica" 
+                                icon="pi pi-check-circle" 
+                                size="small"
+                                (click)="verifyCertificate(certificate.id)"
+                                [loading]="isVerifyingCertificate">
+                            </p-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="!isLoadingCertificates && certificates.length === 0" class="text-center p-4">
+            <i class="pi pi-certificate text-6xl text-300 mb-3"></i>
+            <h3 class="text-lg font-medium text-600 mb-2">Nessun certificato ancora</h3>
+            <p class="text-600 mb-4">Completa i corsi per ottenere i tuoi primi certificati!</p>
+            <p-button 
+                label="Inizia un corso" 
+                icon="pi pi-play" 
+                (click)="router.navigate(['/courses'])">
+            </p-button>
+        </div>
+    </div>
 </main>

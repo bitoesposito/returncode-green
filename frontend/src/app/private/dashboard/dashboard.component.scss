@@ -2,11 +2,47 @@
 .courses-grid {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+}
+
+/* Certificate Card Styles (stile course-cards) */
+.certificate-card {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Certificate Thumbnail */
+.certificate-thumbnail {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Certificate Status Badge Styles */
+.certificate-status {
+  &.certificate-status-valid {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+    border: 1px solid #4caf50;
+  }
+  
+  &.certificate-status-revoked {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #f44336;
+  }
+}
+
+/* Certificate Meta Information */
+.certificate-meta {
+  border-top: 1px solid var(--surface-border);
+  padding-top: 0.5rem;
 }
 
 /* Welcome message styling */
