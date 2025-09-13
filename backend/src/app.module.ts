@@ -12,9 +12,11 @@ import { UserProfile } from './users/entities/user-profile.entity';
 import { AuditLog } from './common/entities/audit-log.entity';
 import { SecurityLog } from './common/entities/security-log.entity';
 import { SessionLog } from './common/entities/session-log.entity';
+import { Certificate } from './certificates/entities/certificate.entity';
 import { CommonModule } from './common/modules/common.module';
 import { MinioModule } from './common/modules/minio.module';
 import { GuardsModule } from './auth/guards/guards.module';
+import { CertificatesModule } from './certificates/certificates.module';
 
 @Module({
   imports: [
@@ -30,7 +32,7 @@ import { GuardsModule } from './auth/guards/guards.module';
         username: configService.get('POSTGRES_USER') || 'user',
         password: configService.get('POSTGRES_PASSWORD') || 'password',
         database: configService.get('POSTGRES_DB') || 'postgres',
-        entities: [User, UserProfile, AuditLog, SecurityLog, SessionLog],
+        entities: [User, UserProfile, AuditLog, SecurityLog, SessionLog, Certificate],
         synchronize: true, // Solo per sviluppo! In produzione usa migration
         logging: ['error'], // Solo errori
         ssl: false,
@@ -45,7 +47,8 @@ import { GuardsModule } from './auth/guards/guards.module';
     ResilienceModule,
     AdminModule,
     MinioModule,
-    GuardsModule
+    GuardsModule,
+    CertificatesModule
   ],
   controllers: [],
   providers: [],

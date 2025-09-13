@@ -32,7 +32,7 @@ import * as bcrypt from 'bcryptjs';
  * 
  * Usage:
  * - Configure environment variables
- * - Run with: npx ts-node src/utilis/seed-admin.ts
+ * - Run with: npx ts-node src/utils/seed-admin.ts
  * - Script will create admin user if it doesn't exist
  * - Exits gracefully if admin already exists
  * 
@@ -58,7 +58,7 @@ import * as bcrypt from 'bcryptjs';
  * ADMIN_ROLE=admin
  * 
  * // Run seeding
- * npx ts-node src/utilis/seed-admin.ts
+ * npx ts-node src/utils/seed-admin.ts
  * 
  * // Output: Admin user and profile created successfully
  */

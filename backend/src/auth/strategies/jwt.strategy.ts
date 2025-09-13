@@ -54,9 +54,16 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     
     // Configure Passport JWT strategy
     super({
-      // Extract JWT from Authorization header as Bearer token
-      // Format: Authorization: Bearer <jwt_token>
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      // Extract JWT from both Authorization header and cookies
+      // Format: Authorization: Bearer <jwt_token> OR access_token cookie
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        ExtractJwt.fromAuthHeaderAsBearerToken(),
+        (request) => {
+          console.log('JWT Strategy - Request cookies:', request.cookies);
+          console.log('JWT Strategy - Access token from cookie:', request.cookies?.access_token);
+          return request.cookies?.access_token;
+        }
+      ]),
       
       // Don't ignore expired tokens - enforce expiration
       ignoreExpiration: false,

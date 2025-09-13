@@ -6,8 +6,9 @@ import { CookieAuthInterceptor } from './auth/interceptors/cookie-auth.intercept
 import * as cookieParser from 'cookie-parser';
 import * as fs from 'fs';
 import * as path from 'path';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { ValidationExceptionFilter } from './common/filters/validation-exception.filter';
 
 // Tutti i redirect e override di console.log, console.warn, console.error e i relativi commenti/documentazione di debug sono stati rimossi da questo file.
 
@@ -37,10 +38,38 @@ async function bootstrap() {
     // Trust proxy for correct IP detection behind reverse proxy/Docker
     app.getHttpAdapter().getInstance().set('trust proxy', true);
     
+    // Apply global validation pipe for DTO validation
+    app.useGlobalPipes(new ValidationPipe({
+      whitelist: true, // Remove properties that don't have decorators
+      forbidNonWhitelisted: true, // Throw error if non-whitelisted properties are present
+      transform: true, // Automatically transform payloads to DTO instances
+      transformOptions: {
+        enableImplicitConversion: true, // Convert types automatically
+      },
+      exceptionFactory: (errors) => {
+        // Custom error response format
+        const result = errors.map((error) => ({
+          property: error.property,
+          value: error.value,
+          constraints: error.constraints,
+        }));
+        return new Error(JSON.stringify({
+          success: false,
+          http_status_code: 400,
+          message: 'Validation failed',
+          data: null,
+          validation_errors: result
+        }));
+      },
+    }));
+    
+    // Apply global exception filter
+    app.useGlobalFilters(new ValidationExceptionFilter());
+    
     // Apply global interceptors
     const metricsInterceptor = app.get(MetricsInterceptor);
-    const cookieAuthInterceptor = app.get(CookieAuthInterceptor);
-    app.useGlobalInterceptors(metricsInterceptor, cookieAuthInterceptor);
+    // const cookieAuthInterceptor = app.get(CookieAuthInterceptor);
+    app.useGlobalInterceptors(metricsInterceptor);
     
     // Set global prefix in case of SSL configuration with nginx
     // app.setGlobalPrefix('backend');
