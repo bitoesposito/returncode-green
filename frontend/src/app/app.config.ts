@@ -323,17 +323,17 @@ const theme = definePreset(Aura, {
     iconSize: "1rem",
     anchorGutter: "2px",
     primary: {
-      50:  "#fef4f0",
-      100: "#fde0d5",
-      200: "#fac1ab",
-      300: "#f5a082",
-      400: "#f17e58",
-      500: "#de5219", // Colore centrale personalizzato
-      600: "#b84314",
-      700: "#92340f",
-      800: "#6c250a",
-      900: "#451605",
-      950: "#2a0c02"
+      50: "#f0f9ff",
+      100: "#e0f2fe",
+      200: "#bae6fd",
+      300: "#7dd3fc",
+      400: "#38bdf8",
+      500: "#0ea5e9",
+      600: "#0284c7",
+      700: "#0369a1",
+      800: "#075985",
+      900: "#0c4a6e",
+      950: "#082f49"
     },
     formField: {
       paddingX: "0.75rem",
