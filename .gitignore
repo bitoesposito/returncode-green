@@ -127,3 +127,5 @@ pnpm-lock.yaml
 
 # Windows specific
 desktop.ini
+
+backend/keys/
