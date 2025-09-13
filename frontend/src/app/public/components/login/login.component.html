@@ -1,0 +1,59 @@
+<p-toast position="top-right"/>
+
+<main class="w-screen h-screen flex flex-column justify-content-center align-items-center p-3 ">
+  <div class="w-full max-w-26rem flex flex-column gap-2 p-3 border-round-md">
+
+    <!-- Logo Section -->
+    <a href="/">
+      <img src="logo-full.svg" alt="logo" height="50"/>
+      <!-- in case of low contrast and diferent logo for dark and light mode, use this: -->
+      <!-- <img [src]="(isDarkMode$ | async) ? './logo-full-white.svg' : './logo-full-black.svg'" alt="logo" height="50"/> -->
+    </a>
+
+    <!-- Header with Dark Mode Toggle -->
+    <div class="flex align-items-center justify-content-between gap-2">
+      <p class="text-2xl font-semibold">{{ 'auth.login.login' | translate }}</p>
+      <div class="flex gap-2">
+        <p-button [icon]="(isDarkMode$ | async) ? 'pi pi-moon' : 'pi pi-sun'" severity="secondary" (click)="toggleDarkMode()" pTooltip="Toggle dark mode" outlined="true" tooltipPosition="bottom"/>
+      </div>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="form" (ngSubmit)="login()" class="flex flex-column gap-2">
+      <div class="flex gap-1 flex-column">
+        <label for="email">{{ 'auth.login.email-address' | translate }}</label>
+        <input formControlName="email" type="email" pInputText [placeholder]="'auth.login.email-address' | translate" [attr.autofocus]="!focusPassword"/>
+      </div>
+    
+      <div class="flex gap-1 flex-column">
+        <label for="password">{{ 'auth.login.password' | translate }}</label>
+        <p-password formControlName="password" id="password" type="password" [placeholder]="'auth.login.password' | translate" styleClass="w-full" [toggleMask]="true" [inputStyle]="{ 'width': '100%' }" [feedback]="false" [attr.autofocus]="focusPassword"/>
+      </div>
+    
+      <div class="flex gap-3 flex-column mt-2">
+        <div class="flex justify-content-between">
+          <div class="flex align-items-center">
+            <p-checkbox formControlName="rememberMe" inputId="remember" [binary]="true" />
+            <label for="remember" class="ml-2 line-height-1 cursor-pointer">{{ 'auth.login.remember-me' | translate }}</label>
+          </div>
+          <a [routerLink]="['/recover']" class="text-primary hover:text-color no-underline">{{ 'auth.login.recover-password' | translate }}</a>
+        </div>
+        
+        <p-button [label]="'auth.login.login' | translate" styleClass="w-full" type="submit" [disabled]="!form.valid || loading" [loading]="loading"/>
+
+        <p class="text-center">{{ 'auth.login.not-a-member' | translate }} <a [routerLink]="['/register']" class="text-primary hover:text-color no-underline">{{ 'auth.login.register' | translate }}</a></p>
+
+        <!-- Social Login Section -->
+        <div id="social-login" class="flex flex-column gap-3">
+          <p class="text-center uppercase text-color-secondary">{{ 'auth.login.or' | translate }}</p>
+
+          <div class="flex flex-column sm:flex-row gap-2 w-full">
+            <p-button icon="pi pi-google" [label]="('auth.login.login-with' | translate) + ' Google'" outlined="true" styleClass="w-full" type="button" [disabled]="socialLoading" [loading]="socialLoading" fluid="true" class="w-full" (click)="loginWithGoogle($event)"/>
+            <p-button icon="pi pi-apple" [label]="('auth.login.login-with' | translate) + ' Apple'" outlined="true" styleClass="w-full" type="button" [disabled]="socialLoading" [loading]="socialLoading" fluid="true" class="w-full" (click)="loginWithApple($event)"/>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</main>

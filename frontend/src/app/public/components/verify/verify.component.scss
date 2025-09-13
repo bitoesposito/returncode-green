@@ -1,0 +1,11 @@
+// Styles for disabled form fields to indicate they are not interactive
+:host ::ng-deep .p-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+// Styles specifically for disabled OTP input fields
+:host ::ng-deep .p-inputotp.p-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

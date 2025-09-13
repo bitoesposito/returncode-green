@@ -1,0 +1,22 @@
+// Media query for small screens
+@media screen and (max-width: 425px) {
+    main {
+        height: min-content !important;
+    }
+}
+
+// Styles for disabled fields during loading
+:host ::ng-deep .p-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+:host ::ng-deep .p-password.p-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+:host ::ng-deep .p-checkbox.p-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

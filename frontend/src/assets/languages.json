@@ -1,0 +1,1132 @@
+[
+	{
+		"iso": "AD",
+		"code": "+376",
+		"lang": "ca_AD"
+	},
+	{
+		"iso": "AE",
+		"code": "+971",
+		"lang": "ar_AE"
+	},
+	{
+		"iso": "AF",
+		"code": "+93",
+		"lang": "fa_AF"
+	},
+	{
+		"iso": "AG",
+		"code": "+1-268",
+		"lang": "en_AG"
+	},
+	{
+		"iso": "AI",
+		"code": "+1-264",
+		"lang": "en_AI"
+	},
+	{
+		"iso": "AL",
+		"code": "+355",
+		"lang": "sq_AL"
+	},
+	{
+		"iso": "AM",
+		"code": "+374",
+		"lang": "hy_AM"
+	},
+	{
+		"iso": "AN",
+		"code": "+599",
+		"lang": "nl_AN"
+	},
+	{
+		"iso": "AO",
+		"code": "+244",
+		"lang": "pt_AO"
+	},
+	{
+		"iso": "AR",
+		"code": "+54",
+		"lang": "es_AR"
+	},
+	{
+		"iso": "AS",
+		"code": "+1-684",
+		"lang": "en_AS"
+	},
+	{
+		"iso": "AT",
+		"code": "+43",
+		"lang": "de_AT"
+	},
+	{
+		"iso": "AU",
+		"code": "+61",
+		"lang": "en_AU"
+	},
+	{
+		"iso": "AW",
+		"code": "+297",
+		"lang": "nl_AW"
+	},
+	{
+		"iso": "AX",
+		"code": "+358",
+		"lang": "sv_AX"
+	},
+	{
+		"iso": "AZ",
+		"code": "+994",
+		"lang": "az_AZ"
+	},
+	{
+		"iso": "BA",
+		"code": "+387",
+		"lang": "bs_BA"
+	},
+	{
+		"iso": "BB",
+		"code": "+1-246",
+		"lang": "en_BB"
+	},
+	{
+		"iso": "BD",
+		"code": "+880",
+		"lang": "bn_BD"
+	},
+	{
+		"iso": "BE",
+		"code": "+32",
+		"lang": "nl_BE"
+	},
+	{
+		"iso": "BF",
+		"code": "+226",
+		"lang": "fr_BF"
+	},
+	{
+		"iso": "BG",
+		"code": "+359",
+		"lang": "bg_BG"
+	},
+	{
+		"iso": "BH",
+		"code": "+973",
+		"lang": "ar_BH"
+	},
+	{
+		"iso": "BI",
+		"code": "+257",
+		"lang": "fr_BI"
+	},
+	{
+		"iso": "BJ",
+		"code": "+229",
+		"lang": "fr_BJ"
+	},
+	{
+		"iso": "BM",
+		"code": "+1-441",
+		"lang": "en_BM"
+	},
+	{
+		"iso": "BN",
+		"code": "+673",
+		"lang": "ms_BN"
+	},
+	{
+		"iso": "BO",
+		"code": "+591",
+		"lang": "es_BO"
+	},
+	{
+		"iso": "BR",
+		"code": "+55",
+		"lang": "pt_BR"
+	},
+	{
+		"iso": "BS",
+		"code": "+1-242",
+		"lang": "en_BS"
+	},
+	{
+		"iso": "BT",
+		"code": "+975",
+		"lang": "dz_BT"
+	},
+	{
+		"iso": "BW",
+		"code": "+267",
+		"lang": "en_BW"
+	},
+	{
+		"iso": "BY",
+		"code": "+375",
+		"lang": "be_BY"
+	},
+	{
+		"iso": "BZ",
+		"code": "+501",
+		"lang": "en_BZ"
+	},
+	{
+		"iso": "CA",
+		"code": "+1",
+		"lang": "en_CA"
+	},
+	{
+		"iso": "CD",
+		"code": "+243",
+		"lang": "fr_CD"
+	},
+	{
+		"iso": "CF",
+		"code": "+236",
+		"lang": "fr_CF"
+	},
+	{
+		"iso": "CG",
+		"code": "+242",
+		"lang": "fr_CG"
+	},
+	{
+		"iso": "CH",
+		"code": "+41",
+		"lang": "de_CH"
+	},
+	{
+		"iso": "CI",
+		"code": "+225",
+		"lang": "fr_CI"
+	},
+	{
+		"iso": "CL",
+		"code": "+56",
+		"lang": "es_CL"
+	},
+	{
+		"iso": "CM",
+		"code": "+237",
+		"lang": "fr_CM"
+	},
+	{
+		"iso": "CN",
+		"code": "+86",
+		"lang": "zh_CN"
+	},
+	{
+		"iso": "CO",
+		"code": "+57",
+		"lang": "es_CO"
+	},
+	{
+		"iso": "CR",
+		"code": "+506",
+		"lang": "es_CR"
+	},
+	{
+		"iso": "CU",
+		"code": "+53",
+		"lang": "es_CU"
+	},
+	{
+		"iso": "CV",
+		"code": "+238",
+		"lang": "pt_CV"
+	},
+	{
+		"iso": "CX",
+		"code": "+61",
+		"lang": "en_CX"
+	},
+	{
+		"iso": "CY",
+		"code": "+357",
+		"lang": "el_CY"
+	},
+	{
+		"iso": "CZ",
+		"code": "+420",
+		"lang": "cs_CZ"
+	},
+	{
+		"iso": "DE",
+		"code": "+49",
+		"lang": "de_DE"
+	},
+	{
+		"iso": "DJ",
+		"code": "+253",
+		"lang": "fr_DJ"
+	},
+	{
+		"iso": "DK",
+		"code": "+45",
+		"lang": "da_DK"
+	},
+	{
+		"iso": "DM",
+		"code": "+1-767",
+		"lang": "en_DM"
+	},
+	{
+		"iso": "DO",
+		"code": "+1-809",
+		"lang": "es_DO"
+	},
+	{
+		"iso": "DZ",
+		"code": "+213",
+		"lang": "ar_DZ"
+	},
+	{
+		"iso": "EC",
+		"code": "+593",
+		"lang": "es_EC"
+	},
+	{
+		"iso": "EE",
+		"code": "+372",
+		"lang": "et_EE"
+	},
+	{
+		"iso": "EG",
+		"code": "+20",
+		"lang": "ar_EG"
+	},
+	{
+		"iso": "ER",
+		"code": "+291",
+		"lang": "ti_ER"
+	},
+	{
+		"iso": "ES",
+		"code": "+34",
+		"lang": "es_ES"
+	},
+	{
+		"iso": "ET",
+		"code": "+251",
+		"lang": "am_ET"
+	},
+	{
+		"iso": "EU",
+		"code": "+388",
+		"lang": "en_EU"
+	},
+	{
+		"iso": "FI",
+		"code": "+358",
+		"lang": "fi_FI"
+	},
+	{
+		"iso": "FJ",
+		"code": "+679",
+		"lang": "en_FJ"
+	},
+	{
+		"iso": "FK",
+		"code": "+500",
+		"lang": "en_FK"
+	},
+	{
+		"iso": "FM",
+		"code": "+691",
+		"lang": "en_FM"
+	},
+	{
+		"iso": "FO",
+		"code": "+298",
+		"lang": "fo_FO"
+	},
+	{
+		"iso": "FR",
+		"code": "+33",
+		"lang": "fr_FR"
+	},
+	{
+		"iso": "GA",
+		"code": "+241",
+		"lang": "fr_GA"
+	},
+	{
+		"iso": "GB",
+		"code": "+44",
+		"lang": "en_GB"
+	},
+	{
+		"iso": "GD",
+		"code": "+1-473",
+		"lang": "en_GD"
+	},
+	{
+		"iso": "GE",
+		"code": "+995",
+		"lang": "ka_GE"
+	},
+	{
+		"iso": "GG",
+		"code": "+44-1481",
+		"lang": "en_GG"
+	},
+	{
+		"iso": "GH",
+		"code": "+233",
+		"lang": "en_GH"
+	},
+	{
+		"iso": "GI",
+		"code": "+350",
+		"lang": "en_GI"
+	},
+	{
+		"iso": "GL",
+		"code": "+299",
+		"lang": "kl_GL"
+	},
+	{
+		"iso": "GM",
+		"code": "+220",
+		"lang": "en_GM"
+	},
+	{
+		"iso": "GN",
+		"code": "+224",
+		"lang": "fr_GN"
+	},
+	{
+		"iso": "GQ",
+		"code": "+240",
+		"lang": "es_GQ"
+	},
+	{
+		"iso": "GR",
+		"code": "+30",
+		"lang": "el_GR"
+	},
+	{
+		"iso": "GT",
+		"code": "+502",
+		"lang": "es_GT"
+	},
+	{
+		"iso": "GU",
+		"code": "+1-671",
+		"lang": "en_GU"
+	},
+	{
+		"iso": "GW",
+		"code": "+245",
+		"lang": "pt_GW"
+	},
+	{
+		"iso": "GY",
+		"code": "+592",
+		"lang": "en_GY"
+	},
+	{
+		"iso": "HK",
+		"code": "+852",
+		"lang": "zh_HK"
+	},
+	{
+		"iso": "HN",
+		"code": "+504",
+		"lang": "es_HN"
+	},
+	{
+		"iso": "HR",
+		"code": "+385",
+		"lang": "hr_HR"
+	},
+	{
+		"iso": "HT",
+		"code": "+509",
+		"lang": "fr_HT"
+	},
+	{
+		"iso": "HU",
+		"code": "+36",
+		"lang": "hu_HU"
+	},
+	{
+		"iso": "ID",
+		"code": "+62",
+		"lang": "id_ID"
+	},
+	{
+		"iso": "IE",
+		"code": "+353",
+		"lang": "en_IE"
+	},
+	{
+		"iso": "IL",
+		"code": "+972",
+		"lang": "he_IL"
+	},
+	{
+		"iso": "IM",
+		"code": "+44-1624",
+		"lang": "en_IM"
+	},
+	{
+		"iso": "IN",
+		"code": "+91",
+		"lang": "hi_IN"
+	},
+	{
+		"iso": "IQ",
+		"code": "+964",
+		"lang": "ar_IQ"
+	},
+	{
+		"iso": "IR",
+		"code": "+98",
+		"lang": "fa_IR"
+	},
+	{
+		"iso": "IS",
+		"code": "+354",
+		"lang": "is_IS"
+	},
+	{
+		"iso": "IT",
+		"code": "+39",
+		"lang": "it_IT"
+	},
+	{
+		"iso": "JE",
+		"code": "+44-1534",
+		"lang": "en_JE"
+	},
+	{
+		"iso": "JM",
+		"code": "+1-876",
+		"lang": "en_JM"
+	},
+	{
+		"iso": "JO",
+		"code": "+962",
+		"lang": "ar_JO"
+	},
+	{
+		"iso": "JP",
+		"code": "+81",
+		"lang": "ja_JP"
+	},
+	{
+		"iso": "KE",
+		"code": "+254",
+		"lang": "en_KE"
+	},
+	{
+		"iso": "KG",
+		"code": "+996",
+		"lang": "ky_KG"
+	},
+	{
+		"iso": "KH",
+		"code": "+855",
+		"lang": "km_KH"
+	},
+	{
+		"iso": "KI",
+		"code": "+686",
+		"lang": "en_KI"
+	},
+	{
+		"iso": "KM",
+		"code": "+269",
+		"lang": "ar_KM"
+	},
+	{
+		"iso": "KN",
+		"code": "+1-869",
+		"lang": "en_KN"
+	},
+	{
+		"iso": "KP",
+		"code": "+850",
+		"lang": "ko_KP"
+	},
+	{
+		"iso": "KR",
+		"code": "+82",
+		"lang": "ko_KR"
+	},
+	{
+		"iso": "KW",
+		"code": "+965",
+		"lang": "ar_KW"
+	},
+	{
+		"iso": "KY",
+		"code": "+1-345",
+		"lang": "en_KY"
+	},
+	{
+		"iso": "KZ",
+		"code": "+7",
+		"lang": "kk_KZ"
+	},
+	{
+		"iso": "LA",
+		"code": "+856",
+		"lang": "lo_LA"
+	},
+	{
+		"iso": "LB",
+		"code": "+961",
+		"lang": "ar_LB"
+	},
+	{
+		"iso": "LC",
+		"code": "+1-758",
+		"lang": "en_LC"
+	},
+	{
+		"iso": "LI",
+		"code": "+423",
+		"lang": "de_LI"
+	},
+	{
+		"iso": "LK",
+		"code": "+94",
+		"lang": "si_LK"
+	},
+	{
+		"iso": "LR",
+		"code": "+231",
+		"lang": "en_LR"
+	},
+	{
+		"iso": "LS",
+		"code": "+266",
+		"lang": "en_LS"
+	},
+	{
+		"iso": "LT",
+		"code": "+370",
+		"lang": "lt_LT"
+	},
+	{
+		"iso": "LU",
+		"code": "+352",
+		"lang": "lb_LU"
+	},
+	{
+		"iso": "LV",
+		"code": "+371",
+		"lang": "lv_LV"
+	},
+	{
+		"iso": "LY",
+		"code": "+218",
+		"lang": "ar_LY"
+	},
+	{
+		"iso": "MA",
+		"code": "+212",
+		"lang": "ar_MA"
+	},
+	{
+		"iso": "MC",
+		"code": "+377",
+		"lang": "fr_MC"
+	},
+	{
+		"iso": "MD",
+		"code": "+373",
+		"lang": "ro_MD"
+	},
+	{
+		"iso": "ME",
+		"code": "+382",
+		"lang": "sr_ME"
+	},
+	{
+		"iso": "MG",
+		"code": "+261",
+		"lang": "mg_MG"
+	},
+	{
+		"iso": "MH",
+		"code": "+692",
+		"lang": "en_MH"
+	},
+	{
+		"iso": "MK",
+		"code": "+389",
+		"lang": "mk_MK"
+	},
+	{
+		"iso": "ML",
+		"code": "+223",
+		"lang": "fr_ML"
+	},
+	{
+		"iso": "MM",
+		"code": "+95",
+		"lang": "my_MM"
+	},
+	{
+		"iso": "MN",
+		"code": "+976",
+		"lang": "mn_MN"
+	},
+	{
+		"iso": "MO",
+		"code": "+853",
+		"lang": "zh_MO"
+	},
+	{
+		"iso": "MP",
+		"code": "+1-670",
+		"lang": "en_MP"
+	},
+	{
+		"iso": "MR",
+		"code": "+222",
+		"lang": "ar_MR"
+	},
+	{
+		"iso": "MS",
+		"code": "+1-664",
+		"lang": "en_MS"
+	},
+	{
+		"iso": "MT",
+		"code": "+356",
+		"lang": "mt_MT"
+	},
+	{
+		"iso": "MU",
+		"code": "+230",
+		"lang": "en_MU"
+	},
+	{
+		"iso": "MV",
+		"code": "+960",
+		"lang": "dv_MV"
+	},
+	{
+		"iso": "MW",
+		"code": "+265",
+		"lang": "en_MW"
+	},
+	{
+		"iso": "MX",
+		"code": "+52",
+		"lang": "es_MX"
+	},
+	{
+		"iso": "MY",
+		"code": "+60",
+		"lang": "ms_MY"
+	},
+	{
+		"iso": "MZ",
+		"code": "+258",
+		"lang": "pt_MZ"
+	},
+	{
+		"iso": "NA",
+		"code": "+264",
+		"lang": "en_NA"
+	},
+	{
+		"iso": "NE",
+		"code": "+227",
+		"lang": "fr_NE"
+	},
+	{
+		"iso": "NF",
+		"code": "+672",
+		"lang": "en_NF"
+	},
+	{
+		"iso": "NG",
+		"code": "+234",
+		"lang": "en_NG"
+	},
+	{
+		"iso": "NI",
+		"code": "+505",
+		"lang": "es_NI"
+	},
+	{
+		"iso": "NL",
+		"code": "+31",
+		"lang": "nl_NL"
+	},
+	{
+		"iso": "NO",
+		"code": "+47",
+		"lang": "no_NO"
+	},
+	{
+		"iso": "NP",
+		"code": "+977",
+		"lang": "ne_NP"
+	},
+	{
+		"iso": "NR",
+		"code": "+674",
+		"lang": "en_NR"
+	},
+	{
+		"iso": "NU",
+		"code": "+683",
+		"lang": "en_NU"
+	},
+	{
+		"iso": "NZ",
+		"code": "+64",
+		"lang": "en_NZ"
+	},
+	{
+		"iso": "OM",
+		"code": "+968",
+		"lang": "ar_OM"
+	},
+	{
+		"iso": "PA",
+		"code": "+507",
+		"lang": "es_PA"
+	},
+	{
+		"iso": "PE",
+		"code": "+51",
+		"lang": "es_PE"
+	},
+	{
+		"iso": "PF",
+		"code": "+689",
+		"lang": "fr_PF"
+	},
+	{
+		"iso": "PG",
+		"code": "+675",
+		"lang": "en_PG"
+	},
+	{
+		"iso": "PH",
+		"code": "+63",
+		"lang": "en_PH"
+	},
+	{
+		"iso": "PK",
+		"code": "+92",
+		"lang": "ur_PK"
+	},
+	{
+		"iso": "PL",
+		"code": "+48",
+		"lang": "pl_PL"
+	},
+	{
+		"iso": "PN",
+		"code": "+870",
+		"lang": "en_PN"
+	},
+	{
+		"iso": "PR",
+		"code": "+1-787",
+		"lang": "es_PR"
+	},
+	{
+		"iso": "PS",
+		"code": "+970",
+		"lang": "ar_PS"
+	},
+	{
+		"iso": "PT",
+		"code": "+351",
+		"lang": "pt_PT"
+	},
+	{
+		"iso": "PW",
+		"code": "+680",
+		"lang": "en_PW"
+	},
+	{
+		"iso": "PY",
+		"code": "+595",
+		"lang": "es_PY"
+	},
+	{
+		"iso": "QA",
+		"code": "+974",
+		"lang": "ar_QA"
+	},
+	{
+		"iso": "RO",
+		"code": "+40",
+		"lang": "ro_RO"
+	},
+	{
+		"iso": "RS",
+		"code": "+381",
+		"lang": "sr_RS"
+	},
+	{
+		"iso": "RU",
+		"code": "+7",
+		"lang": "ru_RU"
+	},
+	{
+		"iso": "RW",
+		"code": "+250",
+		"lang": "rw_RW"
+	},
+	{
+		"iso": "SA",
+		"code": "+966",
+		"lang": "ar_SA"
+	},
+	{
+		"iso": "SB",
+		"code": "+677",
+		"lang": "en_SB"
+	},
+	{
+		"iso": "SC",
+		"code": "+248",
+		"lang": "fr_SC"
+	},
+	{
+		"iso": "SD",
+		"code": "+249",
+		"lang": "ar_SD"
+	},
+	{
+		"iso": "SE",
+		"code": "+46",
+		"lang": "sv_SE"
+	},
+	{
+		"iso": "SG",
+		"code": "+65",
+		"lang": "en_SG"
+	},
+	{
+		"iso": "SI",
+		"code": "+386",
+		"lang": "sl_SI"
+	},
+	{
+		"iso": "SK",
+		"code": "+421",
+		"lang": "sk_SK"
+	},
+	{
+		"iso": "SL",
+		"code": "+232",
+		"lang": "en_SL"
+	},
+	{
+		"iso": "SM",
+		"code": "+378",
+		"lang": "it_SM"
+	},
+	{
+		"iso": "SN",
+		"code": "+221",
+		"lang": "fr_SN"
+	},
+	{
+		"iso": "SO",
+		"code": "+252",
+		"lang": "so_SO"
+	},
+	{
+		"iso": "SR",
+		"code": "+597",
+		"lang": "nl_SR"
+	},
+	{
+		"iso": "SS",
+		"code": "+211",
+		"lang": "en_SS"
+	},
+	{
+		"iso": "ST",
+		"code": "+239",
+		"lang": "pt_ST"
+	},
+	{
+		"iso": "SV",
+		"code": "+503",
+		"lang": "es_SV"
+	},
+	{
+		"iso": "SY",
+		"code": "+963",
+		"lang": "ar_SY"
+	},
+	{
+		"iso": "SZ",
+		"code": "+268",
+		"lang": "en_SZ"
+	},
+	{
+		"iso": "TC",
+		"code": "+1-649",
+		"lang": "en_TC"
+	},
+	{
+		"iso": "TD",
+		"code": "+235",
+		"lang": "fr_TD"
+	},
+	{
+		"iso": "TG",
+		"code": "+228",
+		"lang": "fr_TG"
+	},
+	{
+		"iso": "TH",
+		"code": "+66",
+		"lang": "th_TH"
+	},
+	{
+		"iso": "TJ",
+		"code": "+992",
+		"lang": "tg_TJ"
+	},
+	{
+		"iso": "TL",
+		"code": "+670",
+		"lang": "pt_TL"
+	},
+	{
+		"iso": "TM",
+		"code": "+993",
+		"lang": "tk_TM"
+	},
+	{
+		"iso": "TN",
+		"code": "+216",
+		"lang": "ar_TN"
+	},
+	{
+		"iso": "TO",
+		"code": "+676",
+		"lang": "en_TO"
+	},
+	{
+		"iso": "TR",
+		"code": "+90",
+		"lang": "tr_TR"
+	},
+	{
+		"iso": "TT",
+		"code": "+1-868",
+		"lang": "en_TT"
+	},
+	{
+		"iso": "TV",
+		"code": "+688",
+		"lang": "en_TV"
+	},
+	{
+		"iso": "TW",
+		"code": "+886",
+		"lang": "zh_TW"
+	},
+	{
+		"iso": "TZ",
+		"code": "+255",
+		"lang": "en_TZ"
+	},
+	{
+		"iso": "UA",
+		"code": "+380",
+		"lang": "uk_UA"
+	},
+	{
+		"iso": "UG",
+		"code": "+256",
+		"lang": "en_UG"
+	},
+	{
+		"iso": "US",
+		"code": "+1",
+		"lang": "en_US"
+	},
+	{
+		"iso": "UY",
+		"code": "+598",
+		"lang": "es_UY"
+	},
+	{
+		"iso": "UZ",
+		"code": "+998",
+		"lang": "uz_UZ"
+	},
+	{
+		"iso": "VA",
+		"code": "+379",
+		"lang": "it_VA"
+	},
+	{
+		"iso": "VC",
+		"code": "+1-784",
+		"lang": "en_VC"
+	},
+	{
+		"iso": "VE",
+		"code": "+58",
+		"lang": "es_VE"
+	},
+	{
+		"iso": "VG",
+		"code": "+1-284",
+		"lang": "en_VG"
+	},
+	{
+		"iso": "VI",
+		"code": "+1-340",
+		"lang": "en_VI"
+	},
+	{
+		"iso": "VN",
+		"code": "+84",
+		"lang": "vi_VN"
+	},
+	{
+		"iso": "VU",
+		"code": "+678",
+		"lang": "bi_VU"
+	},
+	{
+		"iso": "WS",
+		"code": "+685",
+		"lang": "sm_WS"
+	},
+	{
+		"iso": "XK",
+		"code": "+383",
+		"lang": "sq_XK"
+	},
+	{
+		"iso": "YE",
+		"code": "+967",
+		"lang": "ar_YE"
+	},
+	{
+		"iso": "ZA",
+		"code": "+27",
+		"lang": "en_ZA"
+	},
+	{
+		"iso": "ZM",
+		"code": "+260",
+		"lang": "en_ZM"
+	},
+	{
+		"iso": "ZW",
+		"code": "+263",
+		"lang": "en_ZW"
+	}
+]

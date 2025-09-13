@@ -1,0 +1,16 @@
+/**
+ * UserProfile Component Styles
+ * 
+ * Custom styles for the PrimeNG TabView component.
+ * Using ::ng-deep to override default styles.
+ */
+
+/* Set transparent background for tab list and panels */
+p-tabview ::ng-deep .p-tablist-tab-list, p-tabview ::ng-deep .p-tabpanels {
+    background-color: transparent;
+}
+
+/* Adjust font size for tab buttons */
+p-tabview ::ng-deep button {
+    font-size: 1rem;
+}

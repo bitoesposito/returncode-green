@@ -1,0 +1,28 @@
+<!-- Toast Notifications -->
+<p-toast position="top-right"/>
+
+<main class="w-screen h-screen flex flex-column justify-content-center align-items-center p-3 ">
+  <div class="w-full max-w-26rem flex flex-column gap-2 p-3 border-round-md">
+
+    <!-- Verification form -->
+    <form [formGroup]="form" (ngSubmit)="verify()" class="flex flex-column gap-2 align-items-center gap-3">
+		<!-- Icon and title -->
+		<i class="material-symbols-outlined text-3xl text-primary">editor_choice</i>
+		<p class="text-center">{{ 'auth.verify.title' | translate }}</p>
+		
+		<!-- OTP Input -->
+		<div class="flex flex-column align-items-center gap-2" style="position: relative;">
+			<p-inputotp formControlName="token" [length]="6" [integerOnly]="true" [ngStyle]="{width: 'fit-content'}" [disabled]="verifying" (paste)="onPaste($event)"/>
+			<div *ngIf="verifying" class="flex align-items-center gap-2 mt-2">
+				<i class="pi pi-spin pi-spinner text-primary"></i>
+				<span class="text-sm text-color-secondary">{{ 'auth.verify.verifying' | translate }}</span>
+			</div>
+		</div>
+
+		<!-- Resend Code Button -->
+		<p-button *ngIf="userEmail" [label]="getResendButtonLabel()" styleClass="w-full" type="button" severity="secondary" text="true" [disabled]="resendDisabled || verifying" [loading]="loading" fluid="true" class="w-full" (click)="resendCode()"/>
+
+    </form>
+
+  </div>
+</main>
