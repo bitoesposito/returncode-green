@@ -1,12 +1,12 @@
 # 🐳 Docker Deployment Guide
 
-## 📋 Overview
+## 📋 Panoramica
 
-**Pandom Stack** is designed to be easily deployed with Docker and Docker Compose. This guide provides complete instructions for deployment in different environments with focus on security and performance.
+**Pandom Stack** è progettato per essere deployato facilmente con Docker e Docker Compose. Questa guida fornisce istruzioni complete per il deployment in diversi ambienti con focus su sicurezza e performance.
 
-## 🏗️ **Docker Architecture**
+## 🏗️ **Architettura Docker**
 
-### **Main Services**
+### **Servizi Principali**
 
 ```mermaid
 graph TB
@@ -49,32 +49,32 @@ graph TB
     BE3 --> LOGS
 ```
 
-### **Available Configurations**
+### **Configurazioni Disponibili**
 
-- **Development**: `docker-compose.yml` - Single instance for development
-- **Production**: `docker-compose.prod.yml` - Multi-instance with load balancing
-- **Staging**: Intermediate configuration for testing
+- **Development**: `docker-compose.yml` - Singola istanza per sviluppo
+- **Production**: `docker-compose.prod.yml` - Multi-istanza con load balancing
+- **Staging**: Configurazione intermedia per testing
 
 ## 🚀 **Development Deployment**
 
-### **1. Initial Setup**
+### **1. Setup Iniziale**
 
 ```bash
 # Clone repository
 git clone <repository-url>
 cd pandom-stack
 
-# Copy configuration files
+# Copia file di configurazione
 cp demo.env .env
 
-# Configure environment variables
+# Configura variabili ambiente
 nano .env
 ```
 
-### **2. Environment Configuration**
+### **2. Configurazione Environment**
 
 ```bash
-# .env for development
+# .env per development
 NODE_ENV=development
 DEBUG=true
 LOG_LEVEL=debug
@@ -85,7 +85,7 @@ POSTGRES_PASSWORD=secure_password_123
 POSTGRES_DB=pandom_db
 DATABASE_URL=postgres://pandom_user:secure_password_123@postgres:5432/pandom_db
 
-# JWT and Sessions
+# JWT e Sessioni
 JWT_SECRET=your-super-secret-jwt-key-change-this
 JWT_EXPIRATION=15m
 JWT_REFRESH_EXPIRATION=7d
@@ -111,24 +111,24 @@ MINIO_ROOT_PASSWORD=minioadmin123
 MINIO_ENDPOINT=http://minio:9000
 MINIO_BUCKET_NAME=pandom-storage
 
-# Email (optional for development)
+# Email (opzionale per development)
 SMTP_ENABLED=false
 ```
 
-### **3. Start Services**
+### **3. Avvio Servizi**
 
 ```bash
-# Start all services
+# Avvia tutti i servizi
 docker-compose up -d
 
-# Monitor logs
+# Monitora i log
 docker-compose logs -f
 
-# Check service status
+# Verifica stato servizi
 docker-compose ps
 ```
 
-### **4. Verify Installation**
+### **4. Verifica Installazione**
 
 ```bash
 # Test backend
@@ -146,21 +146,21 @@ docker-compose exec postgres pg_isready -U pandom_user -d pandom_db
 
 ## 🏭 **Production Deployment**
 
-### **1. Production Configuration**
+### **1. Configurazione Production**
 
 ```bash
-# .env for production
+# .env per production
 NODE_ENV=production
 DEBUG=false
 LOG_LEVEL=info
 
-# Database (use strong passwords)
+# Database (usa password forti)
 POSTGRES_USER=pandom_prod_user
 POSTGRES_PASSWORD=$(openssl rand -base64 32)
 POSTGRES_DB=pandom_prod_db
 DATABASE_URL=postgres://pandom_prod_user:${POSTGRES_PASSWORD}@postgres:5432/pandom_prod_db
 
-# JWT and Sessions (use strong secrets)
+# JWT e Sessioni (usa secret forti)
 JWT_SECRET=$(openssl rand -base64 64)
 JWT_EXPIRATION=15m
 JWT_REFRESH_EXPIRATION=7d
@@ -174,12 +174,12 @@ BE_PORT=3000
 BE_URL=https://api.yourdomain.com
 FE_URL=https://yourdomain.com
 
-# Admin (change credentials)
+# Admin (cambia credenziali)
 ADMIN_EMAIL=admin@yourdomain.com
 ADMIN_PASSWORD=$(openssl rand -base64 16)
 ADMIN_ROLE=admin
 
-# MinIO (use strong passwords)
+# MinIO (usa password forti)
 MINIO_ROOT_USER=minio_prod_user
 MINIO_ROOT_PASSWORD=$(openssl rand -base64 32)
 MINIO_ENDPOINT=https://minio.yourdomain.com
@@ -193,28 +193,28 @@ SMTP_USER=noreply@yourdomain.com
 SMTP_PASS=your-smtp-password
 SMTP_FROM=noreply@yourdomain.com
 
-# Security
+# Sicurezza
 SECURITY_HEADERS_ENABLED=true
 HTTPS_ENABLED=true
 RATE_LIMIT_MAX_ATTEMPTS=5
 RATE_LIMIT_WINDOW_MS=900000
 ```
 
-### **2. SSL/TLS Setup**
+### **2. Setup SSL/TLS**
 
 ```bash
-# Create directory for certificates
+# Crea directory per certificati
 mkdir -p nginx/ssl
 
-# Generate SSL certificates (Let's Encrypt recommended)
+# Genera certificati SSL (Let's Encrypt raccomandato)
 certbot certonly --standalone -d yourdomain.com -d api.yourdomain.com
 
-# Copy certificates
+# Copia certificati
 cp /etc/letsencrypt/live/yourdomain.com/fullchain.pem nginx/ssl/
 cp /etc/letsencrypt/live/yourdomain.com/privkey.pem nginx/ssl/
 ```
 
-### **3. Nginx Configuration**
+### **3. Configurazione Nginx**
 
 ```nginx
 # nginx/nginx.conf
@@ -275,35 +275,35 @@ server {
 }
 ```
 
-### **4. Start Production**
+### **4. Avvio Production**
 
 ```bash
-# Use production configuration
+# Usa configurazione production
 docker-compose -f docker-compose.prod.yml up -d
 
-# Check services
+# Verifica servizi
 docker-compose -f docker-compose.prod.yml ps
 
-# Monitor logs
+# Monitora log
 docker-compose -f docker-compose.prod.yml logs -f
 ```
 
-## 🔧 **Docker Configurations**
+## 🔧 **Configurazioni Docker**
 
 ### **Backend Dockerfile**
 
 ```dockerfile
-# Multi-stage build for optimization
+# Multi-stage build per ottimizzazione
 FROM node:20-alpine AS base
 WORKDIR /src/app
 
-# Install system dependencies
+# Installa dipendenze di sistema
 RUN apk add --no-cache \
     postgresql-client \
     curl \
     && rm -rf /var/cache/apk/*
 
-# Copy package files
+# Copia package files
 COPY package*.json ./
 RUN npm ci --only=production --silent
 
@@ -323,16 +323,16 @@ RUN npm run build
 FROM node:20-alpine AS production
 WORKDIR /src/app
 
-# Create non-root user
+# Crea utente non-root
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nestjs -u 1001
 
-# Copy build and dependencies
+# Copia build e dipendenze
 COPY --from=build --chown=nestjs:nodejs /src/app/dist ./dist
 COPY --from=build --chown=nestjs:nodejs /src/app/node_modules ./node_modules
 COPY --from=build --chown=nestjs:nodejs /src/app/package*.json ./
 
-# Change user
+# Cambia utente
 USER nestjs
 
 EXPOSE 3000
@@ -457,26 +457,26 @@ volumes:
   nginx_logs:
 ```
 
-## 🔒 **Docker Security**
+## 🔒 **Sicurezza Docker**
 
 ### **1. Security Best Practices**
 
 ```dockerfile
-# Use official and updated images
+# Usa immagini ufficiali e aggiornate
 FROM node:20-alpine
 
-# Create non-root user
+# Crea utente non-root
 RUN addgroup -g 1001 -S nodejs && \
     adduser -S nestjs -u 1001
 
-# Don't expose unnecessary ports
+# Non esporre porte non necessarie
 EXPOSE 3000
 
-# Use health checks
+# Usa health checks
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
   CMD curl -f http://localhost:3000/health || exit 1
 
-# Change user
+# Cambia utente
 USER nestjs
 ```
 
@@ -489,21 +489,21 @@ networks:
     driver: bridge
   backend:
     driver: bridge
-    internal: true  # Isolate backend network
+    internal: true  # Isola il network backend
 
 services:
   backend:
     networks:
       - backend
       - frontend
-    # Don't expose ports directly
+    # Non espone porte direttamente
     expose:
       - "3000"
 
   postgres:
     networks:
       - backend
-    # Internal access only
+    # Solo accesso interno
     expose:
       - "5432"
 ```
@@ -527,7 +527,7 @@ secrets:
     file: ./secrets/database_password.txt
 ```
 
-## 📊 **Monitoring and Logging**
+## 📊 **Monitoring e Logging**
 
 ### **1. Health Checks**
 
@@ -598,7 +598,7 @@ services:
           cpus: '0.5'
 ```
 
-## 🔄 **Backup and Recovery**
+## 🔄 **Backup e Recovery**
 
 ### **1. Database Backup**
 
@@ -610,16 +610,16 @@ BACKUP_DIR="/backups"
 DATE=$(date +%Y%m%d_%H%M%S)
 BACKUP_FILE="pandom_backup_${DATE}.sql"
 
-# Create backup
+# Crea backup
 docker-compose exec -T postgres pg_dump \
   -U ${POSTGRES_USER} \
   -d ${POSTGRES_DB} \
   > ${BACKUP_DIR}/${BACKUP_FILE}
 
-# Compress backup
+# Comprimi backup
 gzip ${BACKUP_DIR}/${BACKUP_FILE}
 
-# Remove old backups (older than 30 days)
+# Rimuovi backup vecchi (più di 30 giorni)
 find ${BACKUP_DIR} -name "pandom_backup_*.sql.gz" -mtime +30 -delete
 
 echo "Backup completed: ${BACKUP_FILE}.gz"
@@ -634,7 +634,7 @@ echo "Backup completed: ${BACKUP_FILE}.gz"
 BACKUP_DIR="/backups/minio"
 DATE=$(date +%Y%m%d_%H%M%S)
 
-# Create MinIO backup
+# Crea backup MinIO
 docker-compose exec minio mc mirror /data ${BACKUP_DIR}/minio_${DATE}
 
 echo "MinIO backup completed: minio_${DATE}"
@@ -658,7 +658,7 @@ services:
       sh -c "
         while true; do
           /scripts/backup-database.sh
-          sleep 86400  # 24 hours
+          sleep 86400  # 24 ore
         done
       "
     depends_on:
@@ -703,19 +703,19 @@ jobs:
 #!/bin/bash
 # zero-downtime-deploy.sh
 
-# Build new images
+# Build nuove immagini
 docker-compose -f docker-compose.prod.yml build
 
 # Rolling update backend
 docker-compose -f docker-compose.prod.yml up -d --no-deps backend
 
-# Wait for new containers to be ready
+# Attendi che i nuovi container siano pronti
 sleep 30
 
-# Update frontend
+# Aggiorna frontend
 docker-compose -f docker-compose.prod.yml up -d --no-deps frontend
 
-# Clean old images
+# Pulisci immagini vecchie
 docker image prune -f
 
 echo "Deployment completed successfully"
@@ -726,7 +726,7 @@ echo "Deployment completed successfully"
 ### **1. Common Issues**
 
 ```bash
-# Container won't start
+# Container non si avvia
 docker-compose logs backend
 
 # Database connection issues
@@ -743,7 +743,7 @@ docker system prune -f
 ### **2. Performance Tuning**
 
 ```bash
-# Optimize Docker daemon
+# Ottimizza Docker daemon
 echo '{
   "log-driver": "json-file",
   "log-opts": {
@@ -753,10 +753,10 @@ echo '{
   "storage-driver": "overlay2"
 }' > /etc/docker/daemon.json
 
-# Restart Docker
+# Riavvia Docker
 systemctl restart docker
 ```
 
 ---
 
-**Pandom Stack Docker** - Enterprise-grade containerized deployment with focus on security, scalability, and monitoring.
+**Pandom Stack Docker** - Deployment containerizzato enterprise-grade con focus su sicurezza, scalabilità e monitoring.

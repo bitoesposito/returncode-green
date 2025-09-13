@@ -10,243 +10,243 @@ The `.env` file is organized in logical sections to facilitate configuration:
 
 ```env
 # ============================================================================
-# BASE CONFIGURATION
+# CONFIGURAZIONE BASE
 # ============================================================================
 
 # ============================================================================
-# DATABASE CONFIGURATION
+# CONFIGURAZIONE DATABASE
 # ============================================================================
 
 # ============================================================================
-# SERVER CONFIGURATION
+# CONFIGURAZIONE SERVER
 # ============================================================================
 
 # ============================================================================
-# FRONTEND CONFIGURATION
+# CONFIGURAZIONE FRONTEND
 # ============================================================================
 
 # ============================================================================
-# ADMIN USER CONFIGURATION
+# CONFIGURAZIONE UTENTE AMMINISTRATORE
 # ============================================================================
 
 # ============================================================================
-# JWT AND SESSIONS CONFIGURATION
+# CONFIGURAZIONE JWT E SESSIONI
 # ============================================================================
 
 # ============================================================================
-# EMAIL CONFIGURATION
+# CONFIGURAZIONE EMAIL
 # ============================================================================
 
 # ============================================================================
-# MINIO CONFIGURATION
+# CONFIGURAZIONE MINIO
 # ============================================================================
 
 # ============================================================================
-# SECURITY AND COOKIE CONFIGURATION
+# CONFIGURAZIONE SICUREZZA E COOKIE
 # ============================================================================
 
 # ============================================================================
-# MONITORING CONFIGURATION
+# CONFIGURAZIONE MONITORING
 # ============================================================================
 ```
 
-## 🌐 **Base Configuration**
+## 🌐 **Configurazione Base**
 
 ### **URL**
 ```env
-# Main application domain
+# Dominio principale dell'applicazione
 URL=localhost
 ```
-- **Type**: String
+- **Tipo**: String
 - **Default**: `localhost`
-- **Description**: Main domain used to generate absolute URLs
-- **Example**: `yourdomain.com`, `app.example.com`
+- **Descrizione**: Dominio principale utilizzato per generare URL assoluti
+- **Esempio**: `yourdomain.com`, `app.example.com`
 
-## 🗄️ **Database Configuration**
+## 🗄️ **Configurazione Database**
 
 ### **PostgreSQL Configuration**
 
 ```env
-# PostgreSQL database host
+# Host del database PostgreSQL
 DB_HOST=postgres
 
-# PostgreSQL credentials
+# Credenziali PostgreSQL
 POSTGRES_USER=pandom_user
 POSTGRES_PASSWORD=secure_password_123
 POSTGRES_DB=pandom_db
 
-# PostgreSQL port
+# Porta PostgreSQL
 POSTGRES_PORT=5432
 
-# Database connection URL
+# URL di connessione database
 DATABASE_URL=postgres://pandom_user:secure_password_123@postgres:5432/pandom_db
 DB_URL=postgres://pandom_user:secure_password_123@postgres:5432/pandom_db
 ```
 
 #### **DB_HOST**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `postgres`
-- **Description**: PostgreSQL server host
-- **Docker Environment**: `postgres` (service name)
-- **External Environment**: `your-db-host.com`
+- **Descrizione**: Host del server PostgreSQL
+- **Ambiente Docker**: `postgres` (nome del servizio)
+- **Ambiente Esterno**: `your-db-host.com`
 
 #### **POSTGRES_USER**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `pandom_user`
-- **Description**: Username for database connection
-- **Security**: Use a specific username for the application
+- **Descrizione**: Username per la connessione al database
+- **Sicurezza**: Usa un username specifico per l'applicazione
 
 #### **POSTGRES_PASSWORD**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `secure_password_123`
-- **Description**: Password for database connection
-- **Security**: Use a strong and unique password
-- **Generation**: `openssl rand -base64 32`
+- **Descrizione**: Password per la connessione al database
+- **Sicurezza**: Usa una password forte e unica
+- **Generazione**: `openssl rand -base64 32`
 
 #### **POSTGRES_DB**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `pandom_db`
-- **Description**: Database name
-- **Convention**: Use a descriptive name for the application
+- **Descrizione**: Nome del database
+- **Convenzione**: Usa un nome descrittivo per l'applicazione
 
 #### **POSTGRES_PORT**
-- **Type**: Number
+- **Tipo**: Number
 - **Default**: `5432`
-- **Description**: PostgreSQL server port
-- **Standard**: `5432` (standard PostgreSQL port)
+- **Descrizione**: Porta del server PostgreSQL
+- **Standard**: `5432` (porta standard PostgreSQL)
 
 #### **DATABASE_URL / DB_URL**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `postgres://pandom_user:secure_password_123@postgres:5432/pandom_db`
-- **Description**: Complete database connection URL
-- **Format**: `postgres://username:password@host:port/database`
+- **Descrizione**: URL completo di connessione al database
+- **Formato**: `postgres://username:password@host:port/database`
 
-## 🖥️ **Server Configuration**
+## 🖥️ **Configurazione Server**
 
 ### **Backend Configuration**
 
 ```env
-# Backend port
+# Porta del backend
 BE_PORT=3000
 
-# Backend URL
+# URL del backend
 BE_URL=http://localhost:3000
 
-# Node.js mode
+# Modalità Node.js
 NODE_ENV=development
 ```
 
 #### **BE_PORT**
-- **Type**: Number
+- **Tipo**: Number
 - **Default**: `3000`
-- **Description**: Port on which the backend server listens
+- **Descrizione**: Porta su cui il server backend ascolta
 - **Range**: `1024-65535`
-- **Conflicts**: Avoid ports already in use (80, 443, 8080)
+- **Conflitti**: Evita porte già in uso (80, 443, 8080)
 
 #### **BE_URL**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `http://localhost:3000`
-- **Description**: Complete backend URL
-- **Format**: `http://host:port` or `https://host:port`
+- **Descrizione**: URL completo del backend
+- **Formato**: `http://host:port` o `https://host:port`
 
 #### **NODE_ENV**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `development`
-- **Values**: `development`, `staging`, `production`
-- **Description**: Node.js execution environment
+- **Valori**: `development`, `staging`, `production`
+- **Descrizione**: Ambiente di esecuzione Node.js
 
-## 🎨 **Frontend Configuration**
+## 🎨 **Configurazione Frontend**
 
 ### **Angular Configuration**
 
 ```env
-# Frontend port
+# Porta del frontend
 FE_PORT=4200
 
-# Frontend URL
+# URL del frontend
 FE_URL=http://localhost:4200
 
-# Production mode
+# Modalità produzione
 PRODUCTION=false
 ```
 
 #### **FE_PORT**
-- **Type**: Number
+- **Tipo**: Number
 - **Default**: `4200`
-- **Description**: Port on which the frontend server listens
+- **Descrizione**: Porta su cui il server frontend ascolta
 - **Range**: `1024-65535`
-- **Conflicts**: Avoid ports already in use
+- **Conflitti**: Evita porte già in uso
 
 #### **FE_URL**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `http://localhost:4200`
-- **Description**: Complete frontend URL
-- **Format**: `http://host:port` or `https://host:port`
+- **Descrizione**: URL completo del frontend
+- **Formato**: `http://host:port` o `https://host:port`
 
 #### **PRODUCTION**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `false`
-- **Description**: Enable production mode
-- **Effects**: Disables debug, enables optimizations
+- **Descrizione**: Abilita modalità produzione
+- **Effetti**: Disabilita debug, abilita ottimizzazioni
 
-## 👤 **Admin User Configuration**
+## 👤 **Configurazione Utente Amministratore**
 
 ### **Admin User Setup**
 
 ```env
-# Admin email
+# Email amministratore
 ADMIN_EMAIL=admin@pandom.com
 
-# Admin role
+# Ruolo amministratore
 ADMIN_ROLE=admin
 
-# Admin password (plain text)
+# Password amministratore (in chiaro)
 ADMIN_PASSWORD=admin123
 
-# Admin password (hashed)
+# Password amministratore (hashata)
 ADMIN_HASHED_PASSWORD=
 ```
 
 #### **ADMIN_EMAIL**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `admin@pandom.com`
-- **Description**: Administrator user email
-- **Format**: Valid email
-- **Security**: Use a real email to receive notifications
+- **Descrizione**: Email dell'utente amministratore
+- **Formato**: Email valida
+- **Sicurezza**: Usa un email reale per ricevere notifiche
 
 #### **ADMIN_ROLE**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `admin`
-- **Description**: Administrator user role
-- **Values**: `admin`, `super_admin`
-- **Permissions**: Full system access
+- **Descrizione**: Ruolo dell'utente amministratore
+- **Valori**: `admin`, `super_admin`
+- **Permessi**: Accesso completo al sistema
 
 #### **ADMIN_PASSWORD**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `admin123`
-- **Description**: Plain text password for administrator
-- **Security**: Change immediately after installation
-- **Requirements**: Minimum 8 characters, uppercase, numbers, symbols
+- **Descrizione**: Password in chiaro per l'amministratore
+- **Sicurezza**: Cambia immediatamente dopo l'installazione
+- **Requisiti**: Minimo 8 caratteri, maiuscole, numeri, simboli
 
 #### **ADMIN_HASHED_PASSWORD**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `''`
-- **Description**: Hashed password for administrator
-- **Generation**: `npm run generate-password-hash`
-- **Security**: Takes priority over ADMIN_PASSWORD if present
+- **Descrizione**: Password hashata per l'amministratore
+- **Generazione**: `npm run generate-password-hash`
+- **Sicurezza**: Priorità su ADMIN_PASSWORD se presente
 
-## 🔐 **JWT and Sessions Configuration**
+## 🔐 **Configurazione JWT e Sessioni**
 
 ### **JWT Authentication**
 
 ```env
-# JWT secret key
+# Chiave segreta JWT
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 
-# JWT token expiration
+# Scadenza token JWT
 JWT_EXPIRATION=15m
 
-# Refresh token expiration
+# Scadenza refresh token
 JWT_REFRESH_EXPIRATION=7d
 
 # Cookie Configuration
@@ -261,221 +261,221 @@ SESSION_CLEANUP_INTERVAL=300000
 ```
 
 #### **JWT_SECRET**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `your-super-secret-jwt-key-change-this-in-production`
-- **Description**: Secret key for signing JWT tokens
-- **Security**: **CHANGE IN PRODUCTION**
-- **Generation**: `openssl rand -base64 64`
-- **Length**: Minimum 32 characters
+- **Descrizione**: Chiave segreta per firmare i token JWT
+- **Sicurezza**: **CAMBIARE IN PRODUZIONE**
+- **Generazione**: `openssl rand -base64 64`
+- **Lunghezza**: Minimo 32 caratteri
 
 #### **JWT_EXPIRATION**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `15m`
-- **Description**: JWT token expiration time
-- **Format**: `Xs` (seconds), `Xm` (minutes), `Xh` (hours), `Xd` (days)
-- **Examples**: `15m`, `1h`, `7d`
-- **Security**: Short to reduce risks
+- **Descrizione**: Tempo di scadenza dei token JWT
+- **Formato**: `Xs` (secondi), `Xm` (minuti), `Xh` (ore), `Xd` (giorni)
+- **Esempi**: `15m`, `1h`, `7d`
+- **Sicurezza**: Breve per ridurre i rischi
 
 #### **JWT_REFRESH_EXPIRATION**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `7d`
-- **Description**: Refresh token expiration time
-- **Format**: `Xs` (seconds), `Xm` (minutes), `Xh` (hours), `Xd` (days)
-- **Examples**: `7d`, `30d`
-- **Security**: Longer than access token
+- **Descrizione**: Tempo di scadenza dei refresh token
+- **Formato**: `Xs` (secondi), `Xm` (minuti), `Xh` (ore), `Xd` (giorni)
+- **Esempi**: `7d`, `30d`
+- **Sicurezza**: Più lungo del token di accesso
 
 #### **COOKIE_SECRET**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `your-cookie-secret-here`
-- **Description**: Secret key for signing cookies
-- **Security**: Different from JWT_SECRET
-- **Generation**: `openssl rand -base64 32`
+- **Descrizione**: Chiave segreta per firmare i cookie
+- **Sicurezza**: Diversa da JWT_SECRET
+- **Generazione**: `openssl rand -base64 32`
 
 #### **COOKIE_DOMAIN**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `yourdomain.com`
-- **Description**: Domain for cookies
-- **Development**: `localhost`
-- **Production**: Real domain
+- **Descrizione**: Dominio per i cookie
+- **Sviluppo**: `localhost`
+- **Produzione**: Dominio reale
 
 #### **COOKIE_SECURE**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `true`
-- **Description**: Cookies only on HTTPS
-- **Development**: `false`
-- **Production**: `true`
+- **Descrizione**: Cookie solo su HTTPS
+- **Sviluppo**: `false`
+- **Produzione**: `true`
 
 #### **COOKIE_SAME_SITE**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `strict`
-- **Description**: CSRF protection
-- **Values**: `strict`, `lax`, `none`
-- **Security**: `strict` for maximum protection
+- **Descrizione**: Protezione CSRF
+- **Valori**: `strict`, `lax`, `none`
+- **Sicurezza**: `strict` per massima protezione
 
 #### **SESSION_TIMEOUT**
-- **Type**: Number
-- **Default**: `3600000` (1 hour)
-- **Description**: Session timeout in milliseconds
-- **Security**: Short to reduce risks
+- **Tipo**: Number
+- **Default**: `3600000` (1 ora)
+- **Descrizione**: Timeout sessione in millisecondi
+- **Sicurezza**: Breve per ridurre i rischi
 
 #### **SESSION_CLEANUP_INTERVAL**
-- **Type**: Number
-- **Default**: `300000` (5 minutes)
-- **Description**: Expired session cleanup interval
-- **Performance**: Prevents session accumulation
+- **Tipo**: Number
+- **Default**: `300000` (5 minuti)
+- **Descrizione**: Intervallo pulizia sessioni scadute
+- **Performance**: Evita accumulo sessioni
 
-## 📧 **Email Configuration**
+## 📧 **Configurazione Email**
 
 ### **SMTP Configuration**
 
 ```env
-# SMTP host
+# Host SMTP
 SMTP_HOST=smtp.gmail.com
 
-# SMTP port
+# Porta SMTP
 SMTP_PORT=587
 
-# SMTP user
+# Utente SMTP
 SMTP_USER=your-email@gmail.com
 
-# SMTP password
+# Password SMTP
 SMTP_PASS=your-app-password
 
-# Sender email
+# Email mittente
 SMTP_FROM=noreply@pandom.com
 
-# Enable email
+# Abilita email
 SMTP_ENABLED=false
 ```
 
 #### **SMTP_HOST**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `smtp.gmail.com`
-- **Description**: SMTP server host
-- **Common providers**:
+- **Descrizione**: Host del server SMTP
+- **Provider comuni**:
   - Gmail: `smtp.gmail.com`
   - Outlook: `smtp-mail.outlook.com`
   - SendGrid: `smtp.sendgrid.net`
   - AWS SES: `email-smtp.us-east-1.amazonaws.com`
 
 #### **SMTP_PORT**
-- **Type**: Number
+- **Tipo**: Number
 - **Default**: `587`
-- **Description**: SMTP server port
-- **Common ports**:
-  - `587`: STARTTLS (recommended)
+- **Descrizione**: Porta del server SMTP
+- **Porte comuni**:
+  - `587`: STARTTLS (raccomandato)
   - `465`: SSL/TLS
-  - `25`: Insecure (not recommended)
+  - `25`: Non sicuro (non raccomandato)
 
 #### **SMTP_USER**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `your-email@gmail.com`
-- **Description**: Username for SMTP authentication
-- **Gmail**: Complete email
+- **Descrizione**: Username per l'autenticazione SMTP
+- **Gmail**: Email completa
 - **SendGrid**: `apikey`
 
 #### **SMTP_PASS**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `your-app-password`
-- **Description**: Password for SMTP authentication
-- **Gmail**: App password (not account password)
+- **Descrizione**: Password per l'autenticazione SMTP
+- **Gmail**: Password app (non password account)
 - **SendGrid**: API key
 
 #### **SMTP_FROM**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `noreply@pandom.com`
-- **Description**: Sender email for notifications
-- **Format**: Valid email
-- **Domain**: Must match configured domain
+- **Descrizione**: Email mittente per le notifiche
+- **Formato**: Email valida
+- **Dominio**: Deve corrispondere al dominio configurato
 
 #### **SMTP_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `false`
-- **Description**: Enable email sending
-- **Development**: `false` (disable emails)
-- **Production**: `true` (enable emails)
+- **Descrizione**: Abilita l'invio di email
+- **Sviluppo**: `false` (disabilita email)
+- **Produzione**: `true` (abilita email)
 
-## 📁 **MinIO Configuration**
+## 📁 **Configurazione MinIO**
 
 ### **File Storage Configuration**
 
 ```env
-# MinIO root user
+# Utente root MinIO
 MINIO_ROOT_USER=minioadmin
 
-# MinIO root password
+# Password root MinIO
 MINIO_ROOT_PASSWORD=minioadmin123
 
-# MinIO endpoint
+# Endpoint MinIO
 MINIO_ENDPOINT=http://minio:9000
 
-# MinIO port
+# Porta MinIO
 MINIO_PORT=9000
 
-# Use SSL for MinIO
+# Usa SSL per MinIO
 MINIO_USE_SSL=false
 
-# MinIO bucket name
+# Nome bucket MinIO
 MINIO_BUCKET_NAME=pandom-bucket
 
-# Enable MinIO
+# Abilita MinIO
 MINIO_ENABLED=true
 ```
 
 #### **MINIO_ROOT_USER**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `minioadmin`
-- **Description**: Root username for MinIO
-- **Security**: Change in production
-- **Length**: 3-20 characters
+- **Descrizione**: Username root per MinIO
+- **Sicurezza**: Cambia in produzione
+- **Lunghezza**: 3-20 caratteri
 
 #### **MINIO_ROOT_PASSWORD**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `minioadmin123`
-- **Description**: Root password for MinIO
-- **Security**: Change in production
-- **Length**: Minimum 8 characters
+- **Descrizione**: Password root per MinIO
+- **Sicurezza**: Cambia in produzione
+- **Lunghezza**: Minimo 8 caratteri
 
 #### **MINIO_ENDPOINT**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `http://minio:9000`
-- **Description**: MinIO server endpoint
+- **Descrizione**: Endpoint del server MinIO
 - **Docker**: `http://minio:9000`
-- **External**: `https://your-minio-server.com`
+- **Esterno**: `https://your-minio-server.com`
 
 #### **MINIO_PORT**
-- **Type**: Number
+- **Tipo**: Number
 - **Default**: `9000`
-- **Description**: MinIO server port
+- **Descrizione**: Porta del server MinIO
 - **Standard**: `9000` (API), `9001` (Console)
 
 #### **MINIO_USE_SSL**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `false`
-- **Description**: Use SSL/TLS for MinIO
-- **Development**: `false`
-- **Production**: `true`
+- **Descrizione**: Usa SSL/TLS per MinIO
+- **Sviluppo**: `false`
+- **Produzione**: `true`
 
 #### **MINIO_BUCKET_NAME**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `pandom-bucket`
-- **Description**: Bucket name for files
-- **Convention**: Descriptive name for the application
-- **Format**: Only lowercase letters, numbers, hyphens
+- **Descrizione**: Nome del bucket per i file
+- **Convenzione**: Nome descrittivo per l'applicazione
+- **Formato**: Solo lettere minuscole, numeri, trattini
 
 #### **MINIO_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `true`
-- **Description**: Enable MinIO service
-- **Development**: `true`
-- **Production**: `true` (if not using external S3)
+- **Descrizione**: Abilita il servizio MinIO
+- **Sviluppo**: `true`
+- **Produzione**: `true` (se non usi S3 esterno)
 
-## 🛡️ **Security Configuration**
+## 🛡️ **Configurazione Sicurezza**
 
 ### **Security Settings**
 
 ```env
-# Enable security headers
+# Abilita security headers
 SECURITY_HEADERS_ENABLED=false
 
 # Rate limiting window (ms)
@@ -484,136 +484,136 @@ RATE_LIMIT_WINDOW=900000
 # Rate limiting max requests
 RATE_LIMIT_MAX_REQUESTS=100
 
-# Enable HTTPS
+# Abilita HTTPS
 HTTPS_ENABLED=false
 
-# SSL certificate path
+# Path certificato SSL
 SSL_CERT_PATH=/path/to/cert.pem
 
-# SSL key path
+# Path chiave SSL
 SSL_KEY_PATH=/path/to/key.pem
 
-# Enable CORS
+# Abilita CORS
 CORS_ENABLED=true
 
-# Allowed CORS origins
+# Origini CORS permesse
 CORS_ORIGINS=http://localhost:4200,http://localhost:3000
 ```
 
 #### **SECURITY_HEADERS_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `false`
-- **Description**: Enable HTTP security headers
-- **Development**: `false` (for debugging)
-- **Production**: `true` (mandatory)
+- **Descrizione**: Abilita gli header di sicurezza HTTP
+- **Sviluppo**: `false` (per debugging)
+- **Produzione**: `true` (obbligatorio)
 
 #### **RATE_LIMIT_WINDOW**
-- **Type**: Number
-- **Default**: `900000` (15 minutes)
-- **Description**: Time window for rate limiting
-- **Unit**: Milliseconds
-- **Examples**: `60000` (1 min), `300000` (5 min)
+- **Tipo**: Number
+- **Default**: `900000` (15 minuti)
+- **Descrizione**: Finestra temporale per il rate limiting
+- **Unità**: Millisecondi
+- **Esempi**: `60000` (1 min), `300000` (5 min)
 
 #### **RATE_LIMIT_MAX_REQUESTS**
-- **Type**: Number
+- **Tipo**: Number
 - **Default**: `100`
-- **Description**: Maximum number of requests per window
-- **Development**: `1000` (more permissive)
-- **Production**: `50` (more restrictive)
+- **Descrizione**: Numero massimo di richieste per finestra
+- **Sviluppo**: `1000` (più permissivo)
+- **Produzione**: `50` (più restrittivo)
 
 #### **HTTPS_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `false`
-- **Description**: Enable HTTPS
-- **Development**: `false`
-- **Production**: `true` (mandatory)
+- **Descrizione**: Abilita HTTPS
+- **Sviluppo**: `false`
+- **Produzione**: `true` (obbligatorio)
 
 #### **SSL_CERT_PATH**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `/path/to/cert.pem`
-- **Description**: SSL certificate path
-- **Format**: `.pem` or `.crt` file
-- **Generation**: Let's Encrypt or commercial certificate
+- **Descrizione**: Percorso del certificato SSL
+- **Formato**: File `.pem` o `.crt`
+- **Generazione**: Let's Encrypt o certificato commerciale
 
 #### **SSL_KEY_PATH**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `/path/to/key.pem`
-- **Description**: SSL private key path
-- **Format**: `.pem` or `.key` file
-- **Security**: Keep private and secure
+- **Descrizione**: Percorso della chiave privata SSL
+- **Formato**: File `.pem` o `.key`
+- **Sicurezza**: Mantieni privata e sicura
 
 #### **CORS_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `true`
-- **Description**: Enable CORS for cross-origin requests
-- **Development**: `true`
-- **Production**: Configure specifically
+- **Descrizione**: Abilita CORS per richieste cross-origin
+- **Sviluppo**: `true`
+- **Produzione**: Configura specificamente
 
 #### **CORS_ORIGINS**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `http://localhost:4200,http://localhost:3000`
-- **Description**: Allowed origins for CORS
-- **Format**: Comma-separated list
-- **Examples**: `https://yourdomain.com,https://app.yourdomain.com`
+- **Descrizione**: Origini permesse per CORS
+- **Formato**: Lista separata da virgole
+- **Esempi**: `https://yourdomain.com,https://app.yourdomain.com`
 
-## 📊 **Monitoring Configuration**
+## 📊 **Configurazione Monitoring**
 
 ### **Monitoring Settings**
 
 ```env
-# Enable health checks
+# Abilita health checks
 HEALTH_CHECKS_ENABLED=true
 
-# Enable metrics
+# Abilita metrics
 METRICS_ENABLED=true
 
-# Enable audit logging
+# Abilita audit logging
 AUDIT_LOGGING_ENABLED=true
 
-# Log level
+# Livello di log
 LOG_LEVEL=info
 
-# Enable debug mode
+# Abilita debug mode
 DEBUG_MODE=false
 ```
 
 #### **HEALTH_CHECKS_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `true`
-- **Description**: Enable health checks
+- **Descrizione**: Abilita i controlli di salute
 - **Endpoint**: `/health`
-- **Monitoring**: Container orchestration
+- **Monitoraggio**: Container orchestration
 
 #### **METRICS_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `true`
-- **Description**: Enable metrics collection
+- **Descrizione**: Abilita la raccolta di metriche
 - **Endpoint**: `/metrics`
-- **Monitoring**: Prometheus, Grafana
+- **Monitoraggio**: Prometheus, Grafana
 
 #### **AUDIT_LOGGING_ENABLED**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `true`
-- **Description**: Enable audit logging
+- **Descrizione**: Abilita il logging di audit
 - **Compliance**: GDPR, SOX, HIPAA
 - **Storage**: Database + file system
 
 #### **LOG_LEVEL**
-- **Type**: String
+- **Tipo**: String
 - **Default**: `info`
-- **Description**: Log detail level
-- **Values**: `error`, `warn`, `info`, `debug`, `verbose`
-- **Development**: `debug`
-- **Production**: `info`
+- **Descrizione**: Livello di dettaglio dei log
+- **Valori**: `error`, `warn`, `info`, `debug`, `verbose`
+- **Sviluppo**: `debug`
+- **Produzione**: `info`
 
 #### **DEBUG_MODE**
-- **Type**: Boolean
+- **Tipo**: Boolean
 - **Default**: `false`
-- **Description**: Enable debug mode
-- **Development**: `true`
-- **Production**: `false` (security)
+- **Descrizione**: Abilita modalità debug
+- **Sviluppo**: `true`
+- **Produzione**: `false` (sicurezza)
 
-## 🔄 **Environment-Specific Configurations**
+## 🔄 **Configurazioni per Ambiente**
 
 ### **Development Environment**
 
@@ -658,68 +658,68 @@ RATE_LIMIT_MAX_REQUESTS=50
 JWT_EXPIRATION=30m
 ```
 
-## 🔧 **Configuration Utilities**
+## 🔧 **Utilità di Configurazione**
 
-### **Generate Secure Passwords**
+### **Generazione Password Sicure**
 
 ```bash
-# Generate secure password
+# Genera password sicura
 openssl rand -base64 32
 
-# Generate JWT secret
+# Genera JWT secret
 openssl rand -base64 64
 
-# Generate salt for bcrypt
+# Genera salt per bcrypt
 openssl rand -base64 16
 ```
 
-### **Configuration Validation**
+### **Validazione Configurazione**
 
 ```bash
-# Validate .env file
+# Valida file .env
 docker-compose config
 
-# Test database connection
+# Test connessione database
 docker-compose exec postgres pg_isready -U $POSTGRES_USER -d $POSTGRES_DB
 
-# Test MinIO connection
+# Test connessione MinIO
 curl $MINIO_ENDPOINT/minio/health/live
 ```
 
-### **Configuration Backup**
+### **Backup Configurazione**
 
 ```bash
-# Backup configuration
+# Backup configurazione
 cp .env .env.backup.$(date +%Y%m%d_%H%M%S)
 
-# Restore configuration
+# Restore configurazione
 cp .env.backup.20240101_120000 .env
 ```
 
 ## 🚨 **Best Practices**
 
-### **Security**
+### **Sicurezza**
 
-1. **Always change default credentials**
-2. **Use strong and unique passwords**
-3. **Enable HTTPS in production**
-4. **Configure security headers**
-5. **Limit CORS origins**
+1. **Cambia sempre le credenziali default**
+2. **Usa password forti e uniche**
+3. **Abilita HTTPS in produzione**
+4. **Configura security headers**
+5. **Limita le origini CORS**
 
 ### **Performance**
 
-1. **Configure connection pooling**
-2. **Optimize rate limiting**
-3. **Use appropriate caching**
-4. **Monitor metrics**
+1. **Configura connection pooling**
+2. **Ottimizza rate limiting**
+3. **Usa caching appropriato**
+4. **Monitora le metriche**
 
-### **Maintainability**
+### **Manutenibilità**
 
-1. **Document configurations**
-2. **Use separate environment variables**
-3. **Version configurations**
-4. **Test in staging**
+1. **Documenta le configurazioni**
+2. **Usa variabili d'ambiente separate**
+3. **Versiona le configurazioni**
+4. **Testa in staging**
 
 ---
 
-**Pandom Stack** - Flexible and secure configuration for every environment.
+**Pandom Stack** - Configurazione flessibile e sicura per ogni ambiente. 

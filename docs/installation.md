@@ -51,8 +51,10 @@ docker-compose --version  # Should be >= 2.x
 | **Frontend** | 4200 | Angular development server |
 | **Backend** | 3000 | NestJS API server |
 | **Database** | 5432 | PostgreSQL database |
+
 | **MinIO** | 9000 | Object storage API |
 | **MinIO Console** | 9001 | Object storage web UI |
+
 
 ## ⚡ Quick Installation
 
@@ -109,6 +111,8 @@ open http://localhost:9001
 # Clone the repository
 git clone <repository-url>
 cd pandom-stack
+
+
 ```
 
 ### Step 2: Backend Setup
@@ -250,13 +254,6 @@ SECURITY_HEADERS_ENABLED=false
 HTTPS_ENABLED=false
 SMTP_ENABLED=false
 RATE_LIMIT_MAX_REQUESTS=1000
-HOT_RELOAD=true
-AUTO_MIGRATION=true
-
-# Testing settings
-TEST_DB_HOST=localhost
-TEST_DB_PORT=5432
-TEST_DB_DATABASE=pandom_test
 ```
 
 ## 🔐 **Security Setup**
@@ -335,6 +332,15 @@ RATE_LIMIT_MAX_ATTEMPTS=5    # 5 attempts per window
 - ✅ **CORS properly configured**
 - ✅ **Security headers enabled**
 - ✅ **Rate limiting active**
+LOG_LEVEL=debug
+HOT_RELOAD=true
+AUTO_MIGRATION=true
+
+# Testing settings
+TEST_DB_HOST=localhost
+TEST_DB_PORT=5432
+TEST_DB_DATABASE=pandom_test
+```
 
 ## 🏭 Production Setup
 
@@ -353,6 +359,8 @@ DB_PORT=5432
 DB_USERNAME=prod_user
 DB_PASSWORD=strong_production_password
 DB_DATABASE=pandom_prod
+
+
 
 # Production MinIO
 MINIO_ENDPOINT=production-minio-host
@@ -382,10 +390,7 @@ docker-compose -f docker-compose.prod.yml ps
 ### SSL/HTTPS Configuration
 
 ```bash
-# SSL configuration for production
-HTTPS_ENABLED=true
-COOKIE_SECURE=true
-CORS_ORIGIN=https://yourdomain.com
+
 ```
 
 ## 🔄 Development Workflow
@@ -464,6 +469,8 @@ curl http://localhost:3000/health
 # Database health
 curl http://localhost:3000/health/database
 
+
+
 # MinIO health
 curl http://localhost:3000/health/storage
 ```
@@ -476,6 +483,8 @@ docker-compose logs -f backend
 
 # View database logs
 docker-compose logs -f postgres
+
+
 
 # View MinIO logs
 docker-compose logs -f minio
@@ -653,4 +662,4 @@ openssl s_client -connect yourdomain.com:443
 
 ---
 
-**Pandom Stack** is now ready for development and production use! 🎉
+**Pandom Stack** is now ready for development and production use! 🎉 

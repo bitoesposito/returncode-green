@@ -1,61 +1,61 @@
 # 🔒 Security Implementation Guide
 
-## 📋 Security Overview
+## 📋 Panoramica Sicurezza
 
-**Pandom Stack** implements a robust and modern security system based on **httpOnly cookies**, JWT tokens, and enterprise security best practices. This guide provides a comprehensive overview of the security implementation.
+**Pandom Stack** implementa un sistema di sicurezza robusto e moderno basato su **httpOnly cookies**, JWT tokens, e best practices di sicurezza enterprise. Questa guida fornisce una panoramica completa dell'implementazione di sicurezza.
 
-## 🔐 **Authentication System**
+## 🔐 **Sistema di Autenticazione**
 
 ### **httpOnly Cookies Authentication**
 
-The system uses httpOnly cookies for maximum security:
+Il sistema utilizza cookie httpOnly per massima sicurezza:
 
 ```typescript
-// Backend - Cookie setup
+// Backend - Impostazione cookie
 response.cookie('access_token', session.token, {
-  httpOnly: true,        // Prevents JavaScript access
-  secure: true,          // HTTPS only
-  sameSite: 'strict',    // CSRF protection
-  maxAge: 15 * 60 * 1000 // 15 minutes
+  httpOnly: true,        // Previene accesso JavaScript
+  secure: true,          // Solo HTTPS
+  sameSite: 'strict',    // Protezione CSRF
+  maxAge: 15 * 60 * 1000 // 15 minuti
 });
 
 response.cookie('refresh_token', session.refreshToken, {
   httpOnly: true,
   secure: true,
   sameSite: 'strict',
-  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 giorni
 });
 ```
 
-### **Frontend - Automatic Management**
+### **Frontend - Gestione Automatica**
 
 ```typescript
-// CookieAuthService - Automatic management
+// CookieAuthService - Gestione automatica
 @Injectable()
 export class CookieAuthService {
-  // Cookies are sent automatically
-  // No need to manually handle tokens
+  // I cookie vengono inviati automaticamente
+  // Non è necessario gestire manualmente i token
 }
 ```
 
-### **httpOnly Cookies Benefits**
+### **Vantaggi httpOnly Cookies**
 
-- ✅ **XSS Protection**: Tokens are not accessible via JavaScript
-- ✅ **Automatic Management**: Browsers automatically handle cookies
-- ✅ **CSRF Protection**: SameSite=Strict prevents CSRF attacks
-- ✅ **Secure Transport**: HTTPS only in production
+- ✅ **XSS Protection**: I token non sono accessibili via JavaScript
+- ✅ **Automatic Management**: I browser gestiscono automaticamente i cookie
+- ✅ **CSRF Protection**: SameSite=Strict previene attacchi CSRF
+- ✅ **Secure Transport**: Solo HTTPS in produzione
 
-## 🛡️ **Security Architecture**
+## 🛡️ **Architettura di Sicurezza**
 
 ### **Backend Security Stack**
 
 ```typescript
-// 1. Guards for endpoint protection
+// 1. Guards per protezione endpoint
 @UseGuards(CookieAuthGuard, RolesGuard)
 @Roles(UserRole.admin)
 export class AdminController {}
 
-// 2. Interceptors for logging
+// 2. Interceptors per logging
 @Injectable()
 export class SecurityHeadersInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler) {
@@ -67,11 +67,11 @@ export class SecurityHeadersInterceptor implements NestInterceptor {
   }
 }
 
-// 3. Automatic audit logging
+// 3. Audit logging automatico
 @Injectable()
 export class AuditService {
   async logLoginSuccess(userId: string, userEmail: string, ipAddress: string) {
-    // Automatic logging of all security events
+    // Log automatico di tutti gli eventi di sicurezza
   }
 }
 ```
@@ -79,16 +79,16 @@ export class AuditService {
 ### **Frontend Security Stack**
 
 ```typescript
-// 1. Interceptors for automatic management
+// 1. Interceptors per gestione automatica
 @Injectable()
 export class CookieAuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    // Cookies are sent automatically
+    // I cookie vengono inviati automaticamente
     return next.handle(req);
   }
 }
 
-// 2. Guards for route protection
+// 2. Guards per protezione route
 @Injectable()
 export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean {
@@ -97,14 +97,14 @@ export class AuthGuard implements CanActivate {
 }
 ```
 
-## 🔑 **Token and Session Management**
+## 🔑 **Gestione Token e Sessioni**
 
 ### **Token Lifecycle**
 
 ```typescript
-// 1. Login - Session creation
+// 1. Login - Creazione sessioni
 async login(loginDto: LoginDto, response: Response) {
-  // Create session
+  // Crea sessione
   const session = await this.sessionService.createSession({
     userId: user.uuid,
     deviceInfo,
@@ -113,20 +113,20 @@ async login(loginDto: LoginDto, response: Response) {
     rememberMe: loginDto.rememberMe
   });
 
-  // Set cookies
+  // Imposta cookie
   response.cookie('access_token', session.token, cookieOptions);
   response.cookie('refresh_token', session.refreshToken, cookieOptions);
 }
 
-// 2. Automatic refresh
+// 2. Refresh automatico
 async refreshToken(request: Request) {
   const refreshToken = request.cookies.refresh_token;
-  // Validate and create new access token
+  // Valida e crea nuovo access token
   const newToken = this.jwtService.sign(payload);
   return { access_token: newToken };
 }
 
-// 3. Logout - Cleanup
+// 3. Logout - Pulizia
 async logout(response: Response) {
   response.clearCookie('access_token');
   response.clearCookie('refresh_token');
@@ -136,10 +136,10 @@ async logout(response: Response) {
 ### **Session Management**
 
 ```typescript
-// SessionService - Advanced session management
+// SessionService - Gestione avanzata sessioni
 @Injectable()
 export class SessionService {
-  // Create session with metadata
+  // Creazione sessione con metadati
   async createSession(options: CreateSessionOptions): Promise<Session> {
     const session = {
       id: crypto.randomUUID(),
@@ -154,7 +154,7 @@ export class SessionService {
       isActive: true
     };
 
-    // Save in memory and database
+    // Salva in memoria e database
     this.sessions.set(session.id, session);
     await this.sessionLogRepository.save(sessionLog);
     
@@ -163,7 +163,7 @@ export class SessionService {
 }
 ```
 
-## 📊 **Audit Logging and Monitoring**
+## 📊 **Audit Logging e Monitoring**
 
 ### **Security Logs**
 
@@ -223,10 +223,10 @@ export class AuditLog {
 }
 ```
 
-### **Automatic Logging**
+### **Logging Automatico**
 
 ```typescript
-// Interceptor for automatic logging
+// Interceptor per logging automatico
 @Injectable()
 export class AuditInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler) {
@@ -235,7 +235,7 @@ export class AuditInterceptor implements NestInterceptor {
     
     return next.handle().pipe(
       tap(() => {
-        // Automatic logging of all requests
+        // Log automatico di tutte le richieste
         this.auditService.log({
           eventType: this.getEventType(request),
           status: response.statusCode < 400 ? 'SUCCESS' : 'FAILED',
@@ -252,12 +252,12 @@ export class AuditInterceptor implements NestInterceptor {
 }
 ```
 
-## 🔒 **Endpoint Protection**
+## 🔒 **Protezione Endpoint**
 
 ### **Guards Implementation**
 
 ```typescript
-// CookieAuthGuard - Authentication verification
+// CookieAuthGuard - Verifica autenticazione
 @Injectable()
 export class CookieAuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -278,7 +278,7 @@ export class CookieAuthGuard implements CanActivate {
   }
 }
 
-// RolesGuard - Role control
+// RolesGuard - Controllo ruoli
 @Injectable()
 export class RolesGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
@@ -294,10 +294,10 @@ export class RolesGuard implements CanActivate {
 }
 ```
 
-### **Frontend Route Protection**
+### **Protezione Route Frontend**
 
 ```typescript
-// AuthGuard - Route protection
+// AuthGuard - Protezione route
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(private cookieAuthService: CookieAuthService) {}
@@ -312,7 +312,7 @@ export class AuthGuard implements CanActivate {
   }
 }
 
-// RoleGuard - Role control
+// RoleGuard - Controllo ruoli
 @Injectable()
 export class RoleGuard implements CanActivate {
   constructor(
@@ -334,7 +334,7 @@ export class RoleGuard implements CanActivate {
 }
 ```
 
-## 🛡️ **Security Headers**
+## 🛡️ **Sicurezza Headers**
 
 ### **Security Headers Interceptor**
 
@@ -370,7 +370,7 @@ export class SecurityHeadersInterceptor implements NestInterceptor {
 ### **Password Hashing**
 
 ```typescript
-// AuthService - Secure hashing
+// AuthService - Hashing sicuro
 async hashPassword(password: string): Promise<string> {
   const saltRounds = 12;
   return bcrypt.hash(password, saltRounds);
@@ -413,7 +413,7 @@ export class RateLimitGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const ip = this.getClientIp(request);
     const now = Date.now();
-    const windowMs = 15 * 60 * 1000; // 15 minutes
+    const windowMs = 15 * 60 * 1000; // 15 minuti
     const maxAttempts = 5;
 
     const attempts = this.attempts.get(ip) || [];
@@ -439,8 +439,8 @@ export class RateLimitGuard implements CanActivate {
 @Injectable()
 export class SecurityService {
   async detectSuspiciousActivity(userId: string, ipAddress: string, userAgent: string) {
-    // Check logins from different IPs
-    const recentLogins = await this.getRecentLogins(userId, 24); // last 24h
+    // Controlla login da IP diversi
+    const recentLogins = await this.getRecentLogins(userId, 24); // ultime 24h
     const uniqueIPs = new Set(recentLogins.map(login => login.ipAddress));
     
     if (uniqueIPs.size > 3) {
@@ -454,7 +454,7 @@ export class SecurityService {
       });
     }
 
-    // Check suspicious user agents
+    // Controlla user agent sospetti
     if (this.isSuspiciousUserAgent(userAgent)) {
       await this.logSecurityEvent({
         eventType: 'SUSPICIOUS_ACTIVITY',
@@ -511,7 +511,7 @@ export class SecurityService {
 @Injectable()
 export class SecurityService {
   async deleteUserAccount(userId: string, reason: string) {
-    // Log the request
+    // Log della richiesta
     await this.auditService.log({
       eventType: 'USER_ACCOUNT_DELETION',
       status: 'SUCCESS',
@@ -519,20 +519,20 @@ export class SecurityService {
       details: { reason }
     });
 
-    // Delete user data
+    // Elimina dati utente
     await this.userRepository.delete({ uuid: userId });
     await this.profileRepository.delete({ user_uuid: userId });
     
-    // Delete sessions
+    // Elimina sessioni
     await this.sessionService.invalidateAllUserSessions(userId);
     
-    // Delete logs (optional, for compliance)
+    // Elimina log (opzionale, per compliance)
     // await this.deleteUserLogs(userId);
   }
 }
 ```
 
-## 🔧 **Security Configuration**
+## 🔧 **Configurazione Sicurezza**
 
 ### **Environment Variables**
 
@@ -559,15 +559,15 @@ SESSION_TIMEOUT=3600000
 
 ### **Production Security Checklist**
 
-- ✅ **HTTPS Only**: All cookies and tokens only on HTTPS
-- ✅ **Secure Headers**: Security headers configured
-- ✅ **Rate Limiting**: Protection against brute force
-- ✅ **Audit Logging**: Logging of all operations
-- ✅ **Session Management**: Advanced session management
-- ✅ **Password Security**: Secure hashing with bcrypt
-- ✅ **Input Validation**: Validation of all inputs
-- ✅ **CORS Configuration**: CORS configured correctly
-- ✅ **Error Handling**: Error handling without information leaks
+- ✅ **HTTPS Only**: Tutti i cookie e token solo su HTTPS
+- ✅ **Secure Headers**: Headers di sicurezza configurati
+- ✅ **Rate Limiting**: Protezione contro brute force
+- ✅ **Audit Logging**: Log di tutte le operazioni
+- ✅ **Session Management**: Gestione avanzata sessioni
+- ✅ **Password Security**: Hashing sicuro con bcrypt
+- ✅ **Input Validation**: Validazione di tutti gli input
+- ✅ **CORS Configuration**: CORS configurato correttamente
+- ✅ **Error Handling**: Gestione errori senza leak di informazioni
 
 ## 🚀 **Deployment Security**
 
@@ -577,24 +577,24 @@ SESSION_TIMEOUT=3600000
 # Backend Dockerfile
 FROM node:18-alpine
 
-# Create non-root user
+# Crea utente non-root
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nestjs -u 1001
 
-# Copy and install dependencies
+# Copia e installa dipendenze
 COPY package*.json ./
 RUN npm ci --only=production
 
-# Copy code
+# Copia codice
 COPY --chown=nestjs:nodejs . .
 
-# Change user
+# Cambia utente
 USER nestjs
 
-# Expose port
+# Esponi porta
 EXPOSE 3000
 
-# Start application
+# Avvia applicazione
 CMD ["node", "dist/main"]
 ```
 
@@ -630,4 +630,4 @@ server {
 
 ---
 
-**Pandom Stack Security** - Enterprise-grade security system with httpOnly cookie authentication, comprehensive audit logging, and GDPR compliance.
+**Pandom Stack Security** - Sistema di sicurezza enterprise-grade con autenticazione httpOnly cookies, audit logging completo, e compliance GDPR.

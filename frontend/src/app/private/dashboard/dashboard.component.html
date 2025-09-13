@@ -5,7 +5,18 @@
 <p-toast class="absolute" />
 
 <!-- Main dashboard content area -->
-<main style="max-width: 1200px;" class="m-auto flex flex-column p-3 gap-3 mt-2">
+<main class="m-auto flex flex-column p-3 gap-3 mt-2" style="max-width: 1200px;">
     <!-- Welcome message with translation -->
-    {{ 'dashboard.welcome' | translate }}
+    <div>
+        <p class="text-2xl font-bold">{{ 'dashboard.letsStartLearning' | translate }}</p>
+        <p class="text-600 mt-2">{{ 'dashboard.selectCourse' | translate }}</p>
+    </div>
+
+    <!-- Courses Grid -->
+    <div class="courses-grid">
+        <app-course-cards/>
+        <app-course-cards/>
+        <app-course-cards/>
+        <app-course-cards/>
+    </div>
 </main>

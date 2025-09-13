@@ -1,0 +1,21 @@
+/* Dashboard Styles */
+.courses-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Welcome message styling */
+.welcome-message {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Main content area */
+main {
+  min-height: calc(100vh - 80px); /* Adjust based on nav height */
+}

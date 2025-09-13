@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { authGuard } from '../guards/auth.guard';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
   {
     path: 'control-panel',
     component: ControlPanelComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'quiz',
+    component: QuizComponent,
     canActivate: [authGuard]
   },
   {

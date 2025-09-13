@@ -103,4 +103,4 @@ This project is released under the MIT license.
 
 ---
 
-**Pandom Stack** - Build secure, modern, and scalable applications with this complete boilerplate.
+**Pandom Stack** - Build secure, modern, and scalable applications with this complete boilerplate. 

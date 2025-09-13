@@ -1,32 +1,32 @@
 # 🗄️ Database Design
 
-## 📋 Overview
+## 📋 Panoramica
 
-**Pandom Stack** uses PostgreSQL as the primary database with a design optimized for security, performance, and scalability. The database is designed following best practices for enterprise applications with focus on audit logging, security, and GDPR compliance.
+**Pandom Stack** utilizza PostgreSQL come database principale con un design ottimizzato per sicurezza, performance e scalabilità. Il database è progettato seguendo le best practices per applicazioni enterprise con focus su audit logging, sicurezza e compliance GDPR.
 
-## 🏗️ **Database Architecture**
+## 🏗️ **Architettura Database**
 
-### **Technologies Used**
+### **Tecnologie Utilizzate**
 
 - **Database**: PostgreSQL 17
 - **ORM**: TypeORM
-- **Migrations**: TypeORM Migrations
+- **Migrazioni**: TypeORM Migrations
 - **Backup**: pg_dump + MinIO
-- **Monitoring**: Integrated health checks
+- **Monitoring**: Health checks integrati
 
-### **Key Features**
+### **Caratteristiche Principali**
 
-- ✅ **UUID Primary Keys** for security
-- ✅ **Complete Audit Logging**
-- ✅ **Security Logging** for compliance
-- ✅ **Advanced Session Management**
-- ✅ **JSONB** for flexible metadata
-- ✅ **Optimized indexes** for performance
-- ✅ **Foreign Key constraints** for integrity
+- ✅ **UUID Primary Keys** per sicurezza
+- ✅ **Audit Logging** completo
+- ✅ **Security Logging** per compliance
+- ✅ **Session Management** avanzato
+- ✅ **JSONB** per metadati flessibili
+- ✅ **Indici ottimizzati** per performance
+- ✅ **Foreign Key constraints** per integrità
 
-## 📊 **Database Schema**
+## 📊 **Schema Database**
 
-### **ER Diagram**
+### **Diagramma ER**
 
 ```mermaid
 erDiagram
@@ -96,11 +96,11 @@ erDiagram
     AUTH_USERS ||--o{ SESSION_LOGS : "generates"
 ```
 
-## 🗃️ **Database Entities**
+## 🗃️ **Entità Database**
 
 ### **1. AUTH_USERS**
 
-Main table for user authentication and authorization.
+Tabella principale per l'autenticazione e autorizzazione degli utenti.
 
 ```sql
 CREATE TABLE auth_users (
@@ -117,38 +117,38 @@ CREATE TABLE auth_users (
 );
 ```
 
-#### **Main Fields**
+#### **Campi Principali**
 
-| Field | Type | Description |
+| Campo | Tipo | Descrizione |
 |-------|------|-------------|
-| `uuid` | UUID | Unique primary key |
-| `email` | VARCHAR(255) | User email (unique) |
-| `password_hash` | VARCHAR(255) | bcrypt password hash |
-| `role` | ENUM | User role (user, admin) |
-| `is_verified` | BOOLEAN | Email verified |
-| `is_active` | BOOLEAN | Account active |
-| `last_login_at` | TIMESTAMP | Last login |
-| `profile_uuid` | UUID | Profile reference |
+| `uuid` | UUID | Chiave primaria univoca |
+| `email` | VARCHAR(255) | Email utente (univoca) |
+| `password_hash` | VARCHAR(255) | Hash password bcrypt |
+| `role` | ENUM | Ruolo utente (user, admin) |
+| `is_verified` | BOOLEAN | Email verificata |
+| `is_active` | BOOLEAN | Account attivo |
+| `last_login_at` | TIMESTAMP | Ultimo accesso |
+| `profile_uuid` | UUID | Riferimento al profilo |
 
-#### **Indexes**
+#### **Indici**
 
 ```sql
--- Index for email (unique)
+-- Indice per email (univoco)
 CREATE UNIQUE INDEX idx_auth_users_email ON auth_users(email);
 
--- Index for role
+-- Indice per ruolo
 CREATE INDEX idx_auth_users_role ON auth_users(role);
 
--- Index for active status
+-- Indice per stato attivo
 CREATE INDEX idx_auth_users_active ON auth_users(is_active);
 
--- Index for last login
+-- Indice per ultimo login
 CREATE INDEX idx_auth_users_last_login ON auth_users(last_login_at);
 ```
 
 ### **2. USER_PROFILES**
 
-Table for extended user profile information.
+Tabella per informazioni estese del profilo utente.
 
 ```sql
 CREATE TABLE user_profiles (
@@ -160,29 +160,29 @@ CREATE TABLE user_profiles (
 );
 ```
 
-#### **Main Fields**
+#### **Campi Principali**
 
-| Field | Type | Description |
+| Campo | Tipo | Descrizione |
 |-------|------|-------------|
-| `uuid` | UUID | Unique primary key |
-| `tags` | TEXT[] | User tags array |
-| `metadata` | JSONB | Flexible metadata |
-| `created_at` | TIMESTAMP | Creation date |
-| `updated_at` | TIMESTAMP | Last update date |
+| `uuid` | UUID | Chiave primaria univoca |
+| `tags` | TEXT[] | Array di tag utente |
+| `metadata` | JSONB | Metadati flessibili |
+| `created_at` | TIMESTAMP | Data creazione |
+| `updated_at` | TIMESTAMP | Data ultimo aggiornamento |
 
-#### **Indexes**
+#### **Indici**
 
 ```sql
--- GIN index for tags
+-- Indice GIN per tags
 CREATE INDEX idx_user_profiles_tags ON user_profiles USING GIN(tags);
 
--- GIN index for metadata JSONB
+-- Indice GIN per metadata JSONB
 CREATE INDEX idx_user_profiles_metadata ON user_profiles USING GIN(metadata);
 ```
 
 ### **3. AUDIT_LOGS**
 
-Table for comprehensive system operation logging.
+Tabella per il logging completo delle operazioni di sistema.
 
 ```sql
 CREATE TABLE audit_logs (
@@ -200,43 +200,43 @@ CREATE TABLE audit_logs (
 );
 ```
 
-#### **Main Fields**
+#### **Campi Principali**
 
-| Field | Type | Description |
+| Campo | Tipo | Descrizione |
 |-------|------|-------------|
-| `id` | UUID | Unique primary key |
-| `event_type` | VARCHAR(100) | Event type |
-| `status` | VARCHAR(20) | Operation status |
-| `user_uuid` | UUID | User reference |
-| `session_id` | VARCHAR(255) | Session ID |
-| `ip_address` | INET | IP address |
-| `user_agent` | TEXT | Browser user agent |
-| `resource` | VARCHAR(255) | Accessed resource |
-| `action` | VARCHAR(10) | HTTP action |
-| `details` | JSONB | Additional details |
+| `id` | UUID | Chiave primaria univoca |
+| `event_type` | VARCHAR(100) | Tipo di evento |
+| `status` | VARCHAR(20) | Stato operazione |
+| `user_uuid` | UUID | Riferimento utente |
+| `session_id` | VARCHAR(255) | ID sessione |
+| `ip_address` | INET | Indirizzo IP |
+| `user_agent` | TEXT | User agent browser |
+| `resource` | VARCHAR(255) | Risorsa accessata |
+| `action` | VARCHAR(10) | Azione HTTP |
+| `details` | JSONB | Dettagli aggiuntivi |
 
-#### **Indexes**
+#### **Indici**
 
 ```sql
--- Index for timestamp (for temporal queries)
+-- Indice per timestamp (per query temporali)
 CREATE INDEX idx_audit_logs_timestamp ON audit_logs(timestamp);
 
--- Index for user
+-- Indice per utente
 CREATE INDEX idx_audit_logs_user ON audit_logs(user_uuid);
 
--- Index for event type
+-- Indice per tipo evento
 CREATE INDEX idx_audit_logs_event_type ON audit_logs(event_type);
 
--- Index for status
+-- Indice per status
 CREATE INDEX idx_audit_logs_status ON audit_logs(status);
 
--- Composite index for common queries
+-- Indice composito per query comuni
 CREATE INDEX idx_audit_logs_user_timestamp ON audit_logs(user_uuid, timestamp);
 ```
 
 ### **4. SECURITY_LOGS**
 
-Table for security event logging.
+Tabella per il logging degli eventi di sicurezza.
 
 ```sql
 CREATE TABLE security_logs (
@@ -252,41 +252,41 @@ CREATE TABLE security_logs (
 );
 ```
 
-#### **Main Fields**
+#### **Campi Principali**
 
-| Field | Type | Description |
+| Campo | Tipo | Descrizione |
 |-------|------|-------------|
-| `id` | UUID | Unique primary key |
-| `event_type` | VARCHAR(100) | Security event type |
-| `severity` | VARCHAR(20) | Severity level |
-| `user_uuid` | UUID | User reference |
-| `ip_address` | INET | IP address |
-| `user_agent` | TEXT | Browser user agent |
-| `details` | JSONB | Event details |
-| `metadata` | JSONB | Additional metadata |
+| `id` | UUID | Chiave primaria univoca |
+| `event_type` | VARCHAR(100) | Tipo evento sicurezza |
+| `severity` | VARCHAR(20) | Livello di gravità |
+| `user_uuid` | UUID | Riferimento utente |
+| `ip_address` | INET | Indirizzo IP |
+| `user_agent` | TEXT | User agent browser |
+| `details` | JSONB | Dettagli evento |
+| `metadata` | JSONB | Metadati aggiuntivi |
 
-#### **Indexes**
+#### **Indici**
 
 ```sql
--- Index for timestamp
+-- Indice per timestamp
 CREATE INDEX idx_security_logs_timestamp ON security_logs(timestamp);
 
--- Index for severity
+-- Indice per severità
 CREATE INDEX idx_security_logs_severity ON security_logs(severity);
 
--- Index for event type
+-- Indice per tipo evento
 CREATE INDEX idx_security_logs_event_type ON security_logs(event_type);
 
--- Index for user
+-- Indice per utente
 CREATE INDEX idx_security_logs_user ON security_logs(user_uuid);
 
--- Composite index for alerting
+-- Indice composito per alerting
 CREATE INDEX idx_security_logs_severity_timestamp ON security_logs(severity, timestamp);
 ```
 
 ### **5. SESSION_LOGS**
 
-Table for user session tracking.
+Tabella per il tracking delle sessioni utente.
 
 ```sql
 CREATE TABLE session_logs (
@@ -303,37 +303,37 @@ CREATE TABLE session_logs (
 );
 ```
 
-#### **Main Fields**
+#### **Campi Principali**
 
-| Field | Type | Description |
+| Campo | Tipo | Descrizione |
 |-------|------|-------------|
-| `id` | UUID | Unique primary key |
-| `event_type` | VARCHAR(100) | Session event type |
-| `user_uuid` | UUID | User reference |
-| `session_token_hash` | VARCHAR(255) | Session token hash |
-| `refresh_token_hash` | VARCHAR(255) | Refresh token hash |
-| `device_info` | VARCHAR(255) | Device information |
-| `ip_address` | INET | IP address |
-| `user_agent` | TEXT | Browser user agent |
-| `details` | JSONB | Session details |
+| `id` | UUID | Chiave primaria univoca |
+| `event_type` | VARCHAR(100) | Tipo evento sessione |
+| `user_uuid` | UUID | Riferimento utente |
+| `session_token_hash` | VARCHAR(255) | Hash token sessione |
+| `refresh_token_hash` | VARCHAR(255) | Hash refresh token |
+| `device_info` | VARCHAR(255) | Info dispositivo |
+| `ip_address` | INET | Indirizzo IP |
+| `user_agent` | TEXT | User agent browser |
+| `details` | JSONB | Dettagli sessione |
 
-#### **Indexes**
+#### **Indici**
 
 ```sql
--- Index for timestamp
+-- Indice per timestamp
 CREATE INDEX idx_session_logs_timestamp ON session_logs(timestamp);
 
--- Index for user
+-- Indice per utente
 CREATE INDEX idx_session_logs_user ON session_logs(user_uuid);
 
--- Index for event type
+-- Indice per tipo evento
 CREATE INDEX idx_session_logs_event_type ON session_logs(event_type);
 
--- Index for token hash (for session lookup)
+-- Indice per hash token (per lookup sessioni)
 CREATE INDEX idx_session_logs_token_hash ON session_logs(session_token_hash);
 ```
 
-## 🔧 **Enums and Custom Types**
+## 🔧 **Enums e Tipi Personalizzati**
 
 ### **UserRole Enum**
 
@@ -384,73 +384,73 @@ CREATE TYPE session_event_type AS ENUM (
 );
 ```
 
-## 📈 **Performance and Optimizations**
+## 📈 **Performance e Ottimizzazioni**
 
-### **Composite Indexes**
+### **Indici Compositi**
 
 ```sql
--- Index for audit queries by user and period
+-- Indice per query di audit per utente e periodo
 CREATE INDEX idx_audit_logs_user_time_range ON audit_logs(user_uuid, timestamp DESC);
 
--- Index for security queries by severity and period
+-- Indice per query di sicurezza per severità e periodo
 CREATE INDEX idx_security_logs_severity_time ON security_logs(severity, timestamp DESC);
 
--- Index for active sessions
+-- Indice per sessioni attive
 CREATE INDEX idx_session_logs_active_sessions ON session_logs(user_uuid, event_type, timestamp DESC);
 ```
 
-### **Partitioning (Future)**
+### **Partitioning (Futuro)**
 
 ```sql
--- Partitioning for audit_logs by month
+-- Partitioning per audit_logs per mese
 CREATE TABLE audit_logs_y2024m01 PARTITION OF audit_logs
 FOR VALUES FROM ('2024-01-01') TO ('2024-02-01');
 
--- Partitioning for security_logs by month
+-- Partitioning per security_logs per mese
 CREATE TABLE security_logs_y2024m01 PARTITION OF security_logs
 FOR VALUES FROM ('2024-01-01') TO ('2024-02-01');
 ```
 
-### **VACUUM and Maintenance**
+### **VACUUM e Maintenance**
 
 ```sql
--- Automatic VACUUM configuration
+-- Configurazione automatica VACUUM
 ALTER TABLE audit_logs SET (autovacuum_vacuum_scale_factor = 0.1);
 ALTER TABLE security_logs SET (autovacuum_vacuum_scale_factor = 0.1);
 ALTER TABLE session_logs SET (autovacuum_vacuum_scale_factor = 0.1);
 
--- Configuration for log tables
+-- Configurazione per tabelle di log
 ALTER TABLE audit_logs SET (fillfactor = 90);
 ALTER TABLE security_logs SET (fillfactor = 90);
 ALTER TABLE session_logs SET (fillfactor = 90);
 ```
 
-## 🔒 **Database Security**
+## 🔒 **Sicurezza Database**
 
 ### **Row Level Security (RLS)**
 
 ```sql
--- Enable RLS for audit_logs
+-- Abilita RLS per audit_logs
 ALTER TABLE audit_logs ENABLE ROW LEVEL SECURITY;
 
--- Policy for users: can only see their own logs
+-- Policy per utenti: possono vedere solo i propri log
 CREATE POLICY user_audit_logs_policy ON audit_logs
 FOR SELECT TO authenticated_user
 USING (user_uuid = current_setting('app.current_user_uuid')::UUID);
 
--- Policy for admin: can see all logs
+-- Policy per admin: possono vedere tutti i log
 CREATE POLICY admin_audit_logs_policy ON audit_logs
 FOR ALL TO admin_role
 USING (true);
 ```
 
-### **Encryption**
+### **Crittografia**
 
 ```sql
--- Extension for encryption
+-- Estensione per crittografia
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
--- Function for secure hash
+-- Funzione per hash sicuro
 CREATE OR REPLACE FUNCTION secure_hash(input TEXT)
 RETURNS TEXT AS $$
 BEGIN
@@ -459,17 +459,17 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-## 📊 **Monitoring and Health Checks**
+## 📊 **Monitoring e Health Checks**
 
 ### **Health Check Queries**
 
 ```sql
--- Check active connections
+-- Controllo connessioni attive
 SELECT count(*) as active_connections 
 FROM pg_stat_activity 
 WHERE state = 'active';
 
--- Check table sizes
+-- Controllo dimensioni tabelle
 SELECT 
     schemaname,
     tablename,
@@ -478,7 +478,7 @@ FROM pg_tables
 WHERE schemaname = 'public'
 ORDER BY pg_total_relation_size(schemaname||'.'||tablename) DESC;
 
--- Check query performance
+-- Controllo performance query
 SELECT 
     query,
     calls,
@@ -493,53 +493,53 @@ LIMIT 10;
 ### **Alerting Queries**
 
 ```sql
--- Check recent errors
+-- Controllo errori recenti
 SELECT count(*) as error_count
 FROM audit_logs 
 WHERE status = 'FAILED' 
 AND timestamp > NOW() - INTERVAL '1 hour';
 
--- Check failed login attempts
+-- Controllo tentativi di login falliti
 SELECT count(*) as failed_logins
 FROM security_logs 
 WHERE event_type = 'USER_LOGIN_FAILED' 
 AND timestamp > NOW() - INTERVAL '15 minutes';
 
--- Check active sessions
+-- Controllo sessioni attive
 SELECT count(DISTINCT user_uuid) as active_users
 FROM session_logs 
 WHERE event_type = 'CREATED' 
 AND timestamp > NOW() - INTERVAL '1 hour';
 ```
 
-## 🔄 **Backup and Recovery**
+## 🔄 **Backup e Recovery**
 
 ### **Backup Strategy**
 
 ```bash
-# Complete backup
+# Backup completo
 pg_dump -h localhost -U pandom_user -d pandom_db > backup_$(date +%Y%m%d_%H%M%S).sql
 
-# Schema only backup
+# Backup solo schema
 pg_dump -h localhost -U pandom_user -d pandom_db --schema-only > schema_backup.sql
 
-# Data only backup
+# Backup solo dati
 pg_dump -h localhost -U pandom_user -d pandom_db --data-only > data_backup.sql
 
-# Compressed backup
+# Backup compresso
 pg_dump -h localhost -U pandom_user -d pandom_db | gzip > backup_$(date +%Y%m%d_%H%M%S).sql.gz
 ```
 
 ### **Recovery Procedures**
 
 ```bash
-# Complete restore
+# Restore completo
 psql -h localhost -U pandom_user -d pandom_db < backup_20240115_120000.sql
 
-# Restore from compressed backup
+# Restore da backup compresso
 gunzip -c backup_20240115_120000.sql.gz | psql -h localhost -U pandom_user -d pandom_db
 
-# Selective restore
+# Restore selettivo
 psql -h localhost -U pandom_user -d pandom_db -c "DELETE FROM audit_logs WHERE timestamp < '2024-01-01';"
 ```
 
@@ -548,7 +548,7 @@ psql -h localhost -U pandom_user -d pandom_db -c "DELETE FROM audit_logs WHERE t
 ### **TypeORM Migrations**
 
 ```typescript
-// Example migration
+// Esempio migrazione
 export class CreateAuditLogsTable1234567890123 implements MigrationInterface {
     name = 'CreateAuditLogsTable1234567890123'
 
@@ -570,7 +570,7 @@ export class CreateAuditLogsTable1234567890123 implements MigrationInterface {
                         length: '100',
                         isNullable: false,
                     },
-                    // ... other fields
+                    // ... altri campi
                 ],
                 indices: [
                     {
@@ -593,29 +593,29 @@ export class CreateAuditLogsTable1234567890123 implements MigrationInterface {
 
 ### **Design Patterns**
 
-1. **UUID Primary Keys**: For security and distribution
-2. **Soft Deletes**: For complete audit trail
-3. **Audit Logging**: For compliance and debugging
-4. **JSONB**: For flexible metadata
-5. **Optimized Indexes**: For query performance
-6. **Foreign Key Constraints**: For data integrity
+1. **UUID Primary Keys**: Per sicurezza e distribuzione
+2. **Soft Deletes**: Per audit trail completo
+3. **Audit Logging**: Per compliance e debugging
+4. **JSONB**: Per metadati flessibili
+5. **Indici Ottimizzati**: Per performance query
+6. **Foreign Key Constraints**: Per integrità dati
 
 ### **Performance Guidelines**
 
-1. **Indexes**: Only on fields used in queries
-2. **Partitioning**: For large log tables
-3. **VACUUM**: Automatic configuration
-4. **Connection Pooling**: For connection management
-5. **Query Optimization**: Regular query analysis
+1. **Indici**: Solo su campi utilizzati nelle query
+2. **Partitioning**: Per tabelle di log grandi
+3. **VACUUM**: Configurazione automatica
+4. **Connection Pooling**: Per gestione connessioni
+5. **Query Optimization**: Analisi regolare delle query
 
 ### **Security Guidelines**
 
-1. **RLS**: Row Level Security for data isolation
-2. **Encryption**: For sensitive data
-3. **Audit Trail**: Complete operation logging
-4. **Access Control**: Granular roles and permissions
-5. **Backup Encryption**: For secure backups
+1. **RLS**: Row Level Security per isolamento dati
+2. **Crittografia**: Per dati sensibili
+3. **Audit Trail**: Logging completo delle operazioni
+4. **Access Control**: Ruoli e permessi granulari
+5. **Backup Encryption**: Per backup sicuri
 
 ---
 
-**Pandom Stack Database** - Enterprise-grade database design with focus on security, performance, and compliance.
+**Pandom Stack Database** - Design database enterprise-grade con focus su sicurezza, performance e compliance.

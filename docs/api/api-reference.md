@@ -1,21 +1,21 @@
 # 📚 API Reference
 
-## 📋 API Overview
+## 📋 Panoramica API
 
-**Pandom Stack** provides a complete and well-documented REST API for all application features. The API is designed following REST best practices and includes **httpOnly cookie-based authentication**, input validation, and standardized error handling.
+**Pandom Stack** fornisce un'API REST completa e ben documentata per tutte le funzionalità dell'applicazione. L'API è progettata seguendo le best practices REST e include autenticazione basata su **httpOnly cookies**, validazione input, e gestione errori standardizzata.
 
-## 🔐 **Authentication**
+## 🔐 **Autenticazione**
 
 ### **httpOnly Cookies Authentication**
 
-The application uses an **httpOnly cookie-based authentication** system for maximum security:
+L'applicazione utilizza un sistema di autenticazione basato su **httpOnly cookies** per massima sicurezza:
 
-- **Access Token**: `access_token` cookie (15 minutes)
-- **Refresh Token**: `refresh_token` cookie (7-30 days)
-- **Automatic Refresh**: Automatic refresh token management
-- **CSRF Protection**: Built-in protection against CSRF attacks
+- **Access Token**: Cookie `access_token` (15 minuti)
+- **Refresh Token**: Cookie `refresh_token` (7-30 giorni)
+- **Automatic Refresh**: Gestione automatica del refresh token
+- **CSRF Protection**: Protezione integrata contro attacchi CSRF
 
-### **Getting a Token**
+### **Ottenere un Token**
 
 ```http
 POST /auth/login
@@ -56,15 +56,15 @@ Content-Type: application/json
 }
 ```
 
-**Cookies automatically set:**
+**Cookies impostati automaticamente:**
 ```
 Set-Cookie: access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Strict; Max-Age=900
 Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...; HttpOnly; Secure; SameSite=Strict; Max-Age=604800
 ```
 
-## 📊 **Standard Response Format**
+## 📊 **Formato Response Standard**
 
-All APIs follow a standardized response format:
+Tutte le API seguono un formato di response standardizzato:
 
 ```json
 {
@@ -72,7 +72,7 @@ All APIs follow a standardized response format:
   "success": true,
   "message": "Operation completed successfully",
   "data": {
-    // Endpoint-specific data
+    // Dati specifici dell'endpoint
   },
   "pagination": {
     "page": 1,
@@ -83,9 +83,9 @@ All APIs follow a standardized response format:
 }
 ```
 
-## 🚨 **Error Handling**
+## 🚨 **Gestione Errori**
 
-### **Error Format**
+### **Formato Errori**
 
 ```json
 {
@@ -101,10 +101,10 @@ All APIs follow a standardized response format:
 }
 ```
 
-### **HTTP Status Codes**
+### **Codici di Stato HTTP**
 
-| Code | Description |
-|------|-------------|
+| Codice | Descrizione |
+|--------|-------------|
 | `200` | Success |
 | `201` | Created |
 | `400` | Bad Request |
@@ -119,7 +119,7 @@ All APIs follow a standardized response format:
 
 ### **POST /auth/register**
 
-Register a new user.
+Registra un nuovo utente.
 
 **Request:**
 ```json
@@ -151,7 +151,7 @@ Register a new user.
 
 ### **POST /auth/login**
 
-Authenticate an existing user. Automatically sets httpOnly cookies.
+Autentica un utente esistente. Imposta automaticamente i cookie httpOnly.
 
 **Request:**
 ```json
@@ -192,7 +192,7 @@ Authenticate an existing user. Automatically sets httpOnly cookies.
 
 ### **POST /auth/refresh**
 
-Automatically refresh tokens using httpOnly cookies.
+Rinnova automaticamente i token usando i cookie httpOnly.
 
 **Response:**
 ```json
@@ -209,7 +209,7 @@ Automatically refresh tokens using httpOnly cookies.
 
 ### **GET /auth/me**
 
-Get current user data. Automatically uses cookies for authentication.
+Ottiene i dati dell'utente corrente. Utilizza automaticamente i cookie per l'autenticazione.
 
 **Response:**
 ```json
@@ -241,7 +241,7 @@ Get current user data. Automatically uses cookies for authentication.
 
 ### **POST /auth/verify**
 
-Verify user email.
+Verifica l'email dell'utente.
 
 **Request:**
 ```json
@@ -268,7 +268,7 @@ Verify user email.
 
 ### **POST /auth/forgot-password**
 
-Request password reset.
+Richiede il reset della password.
 
 **Request:**
 ```json
@@ -291,7 +291,7 @@ Request password reset.
 
 ### **POST /auth/reset-password**
 
-Reset password with OTP.
+Resetta la password con OTP.
 
 **Request:**
 ```json
@@ -320,7 +320,7 @@ Reset password with OTP.
 
 ### **POST /auth/resend-verification**
 
-Resend verification email.
+Rinvia l'email di verifica.
 
 **Request:**
 ```json
@@ -343,7 +343,7 @@ Resend verification email.
 
 ### **POST /auth/logout**
 
-Logout user. Automatically invalidates cookies.
+Effettua il logout dell'utente. Invalida i cookie automaticamente.
 
 **Response:**
 ```json
@@ -359,7 +359,7 @@ Logout user. Automatically invalidates cookies.
 
 ### **GET /profile**
 
-Get current user profile.
+Ottiene il profilo dell'utente corrente.
 
 **Response:**
 ```json
@@ -385,7 +385,7 @@ Get current user profile.
 
 ### **PUT /profile**
 
-Update user profile.
+Aggiorna il profilo dell'utente.
 
 **Request:**
 ```json
@@ -429,11 +429,11 @@ Update user profile.
 
 ### **GET /security/logs**
 
-Get user security logs.
+Ottiene i log di sicurezza dell'utente.
 
 **Query Parameters:**
-- `page` (number): Page number (default: 1)
-- `limit` (number): Items per page (default: 10)
+- `page` (number): Numero di pagina (default: 1)
+- `limit` (number): Elementi per pagina (default: 10)
 
 **Response:**
 ```json
@@ -471,7 +471,7 @@ Get user security logs.
 
 ### **GET /security/sessions**
 
-Get user active sessions.
+Ottiene le sessioni attive dell'utente.
 
 **Response:**
 ```json
@@ -508,7 +508,7 @@ Get user active sessions.
 
 ### **DELETE /security/sessions/{sessionId}**
 
-Terminate a specific session.
+Termina una sessione specifica.
 
 **Response:**
 ```json
@@ -524,7 +524,7 @@ Terminate a specific session.
 
 ### **DELETE /security/sessions/all**
 
-Terminate all sessions except the current one.
+Termina tutte le sessioni tranne quella corrente.
 
 **Response:**
 ```json
@@ -540,7 +540,7 @@ Terminate all sessions except the current one.
 
 ### **GET /security/download-data**
 
-Request user data export (GDPR).
+Richiede l'export dei dati utente (GDPR).
 
 **Response:**
 ```json
@@ -564,7 +564,7 @@ Request user data export (GDPR).
 
 ### **DELETE /security/delete-account**
 
-Delete user account (GDPR Right to Erasure).
+Elimina l'account utente (GDPR Right to Erasure).
 
 **Request:**
 ```json
@@ -591,12 +591,12 @@ Delete user account (GDPR Right to Erasure).
 
 ### **GET /admin/users**
 
-Get user list (admin only).
+Ottiene la lista degli utenti (solo admin).
 
 **Query Parameters:**
-- `page` (number): Page number (default: 1)
-- `limit` (number): Items per page (default: 10)
-- `search` (string): Search by email
+- `page` (number): Numero di pagina (default: 1)
+- `limit` (number): Elementi per pagina (default: 10)
+- `search` (string): Ricerca per email
 
 **Response:**
 ```json
@@ -629,7 +629,7 @@ Get user list (admin only).
 
 ### **DELETE /admin/users/{uuid}**
 
-Delete a user (admin only).
+Elimina un utente (solo admin).
 
 **Response:**
 ```json
@@ -646,7 +646,7 @@ Delete a user (admin only).
 
 ### **GET /admin/metrics**
 
-Get system metrics.
+Ottiene le metriche del sistema.
 
 **Response:**
 ```json
@@ -678,7 +678,7 @@ Get system metrics.
 
 ### **GET /admin/metrics/detailed**
 
-Get detailed system metrics.
+Ottiene metriche dettagliate del sistema.
 
 **Response:**
 ```json
@@ -711,11 +711,11 @@ Get detailed system metrics.
 
 ### **GET /admin/audit-logs**
 
-Get system audit logs.
+Ottiene i log di audit del sistema.
 
 **Query Parameters:**
-- `page` (number): Page number (default: 1)
-- `limit` (number): Items per page (default: 50)
+- `page` (number): Numero di pagina (default: 1)
+- `limit` (number): Elementi per pagina (default: 50)
 
 **Response:**
 ```json
@@ -759,7 +759,7 @@ Get system audit logs.
 
 ### **GET /resilience/status**
 
-Check system status.
+Verifica lo stato del sistema.
 
 **Response:**
 ```json
@@ -783,7 +783,7 @@ Check system status.
 
 ### **POST /resilience/backup**
 
-Create system backup.
+Crea un backup del sistema.
 
 **Response:**
 ```json
@@ -803,11 +803,11 @@ Create system backup.
 
 ### **GET /resilience/backup**
 
-List available backups.
+Lista i backup disponibili.
 
 **Query Parameters:**
-- `page` (number): Page number (default: 1)
-- `limit` (number): Items per page (default: 10)
+- `page` (number): Numero di pagina (default: 1)
+- `limit` (number): Elementi per pagina (default: 10)
 
 **Response:**
 ```json
@@ -837,7 +837,7 @@ List available backups.
 
 ### **POST /resilience/backup/{backupId}/restore**
 
-Restore system from backup.
+Ripristina il sistema da un backup.
 
 **Response:**
 ```json
@@ -855,15 +855,15 @@ Restore system from backup.
 
 ## 🔄 **Rate Limiting**
 
-The API implements rate limiting to protect against abuse:
+L'API implementa rate limiting per proteggere da abusi:
 
-### **Standard Limits**
-- **Authentication**: 5 attempts per 15 minutes
-- **General API**: 100 requests per 15 minutes
-- **Upload**: 10 files per hour
-- **Export**: 5 exports per day
+### **Limiti Standard**
+- **Autenticazione**: 5 tentativi per 15 minuti
+- **API Generali**: 100 richieste per 15 minuti
+- **Upload**: 10 file per ora
+- **Export**: 5 export per giorno
 
-### **Rate Limiting Headers**
+### **Headers di Rate Limiting**
 
 ```http
 X-RateLimit-Limit: 100
@@ -871,69 +871,69 @@ X-RateLimit-Remaining: 95
 X-RateLimit-Reset: 1640998800
 ```
 
-## 📝 **Input Validation**
+## 📝 **Validazione Input**
 
-All endpoints validate input according to these schemas:
+Tutti gli endpoint validano l'input secondo questi schemi:
 
 ### **Email**
-- Valid email format
-- Maximum length: 255 characters
+- Formato email valido
+- Lunghezza massima: 255 caratteri
 
 ### **Password**
-- Minimum length: 8 characters
-- Must contain: uppercase, lowercase, numbers, symbols
+- Lunghezza minima: 8 caratteri
+- Deve contenere: maiuscole, minuscole, numeri, simboli
 
 ### **UUID**
-- Valid UUID v4 format
+- Formato UUID v4 valido
 
 ### **Date**
-- ISO 8601 format: `YYYY-MM-DDTHH:mm:ss.sssZ`
+- Formato ISO 8601: `YYYY-MM-DDTHH:mm:ss.sssZ`
 
-## 🔍 **Search and Filters**
+## 🔍 **Ricerca e Filtri**
 
-Many endpoints support search and filters:
+Molti endpoint supportano ricerca e filtri:
 
-### **Text Search**
+### **Ricerca Testuale**
 ```http
 GET /admin/users?search=john
 ```
 
-### **Filters**
+### **Filtri**
 ```http
 GET /admin/users?role=user&status=active
 ```
 
-### **Sorting**
+### **Ordinamento**
 ```http
 GET /admin/users?sort=createdAt&order=desc
 ```
 
-### **Pagination**
+### **Paginazione**
 ```http
 GET /admin/users?page=2&limit=20
 ```
 
-## 🔒 **Security**
+## 🔒 **Sicurezza**
 
 ### **httpOnly Cookies**
-- Tokens are stored in httpOnly cookies to prevent XSS attacks
-- Cookies are marked as Secure and SameSite=Strict
-- Automatic token refresh
+- I token sono memorizzati in cookie httpOnly per prevenire attacchi XSS
+- I cookie sono marcati come Secure e SameSite=Strict
+- Refresh automatico dei token
 
 ### **CSRF Protection**
-- Built-in protection against CSRF attacks
-- CSRF token validation for sensitive operations
+- Protezione integrata contro attacchi CSRF
+- Validazione dei token CSRF per operazioni sensibili
 
 ### **Audit Logging**
-- All operations are logged in audit logs
-- IP and User Agent tracking
-- Security logs for important events
+- Tutte le operazioni sono registrate nei log di audit
+- Tracciamento IP e User Agent
+- Log di sicurezza per eventi importanti
 
 ### **Session Management**
-- Advanced session management
-- Ability to terminate specific sessions
-- Active session monitoring
+- Gestione avanzata delle sessioni
+- Possibilità di terminare sessioni specifiche
+- Monitoraggio delle sessioni attive
 
 ---
 
-**Pandom Stack API** - Complete, secure, and well-documented REST API for enterprise applications with httpOnly cookie-based authentication.
+**Pandom Stack API** - API REST completa, sicura e ben documentata per applicazioni enterprise con autenticazione basata su httpOnly cookies.

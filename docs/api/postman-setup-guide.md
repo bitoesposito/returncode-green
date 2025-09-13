@@ -1,21 +1,21 @@
 # 📮 Postman Setup Guide
 
-## 📋 Overview
+## 📋 Panoramica
 
-This guide will help you configure and use the Postman collection to test the **Pandom Stack** API with the new **httpOnly cookie-based authentication** system.
+Questa guida ti aiuterà a configurare e utilizzare la collezione Postman per testare l'API di **Pandom Stack** con il nuovo sistema di autenticazione basato su **httpOnly cookies**.
 
-## 🚀 **Initial Setup**
+## 🚀 **Setup Iniziale**
 
-### **1. Import the Collection**
+### **1. Importa la Collezione**
 
-1. Open Postman
-2. Click **Import**
-3. Select the `pandom-postman-collection.json` file
-4. The collection will be imported with all endpoints
+1. Apri Postman
+2. Clicca su **Import**
+3. Seleziona il file `pandom-postman-collection.json`
+4. La collezione verrà importata con tutti gli endpoint
 
-### **2. Configure Environment**
+### **2. Configura l'Environment**
 
-Create a new environment with the following variables:
+Crea un nuovo environment con le seguenti variabili:
 
 ```json
 {
@@ -40,23 +40,23 @@ Create a new environment with the following variables:
 }
 ```
 
-## 🔐 **httpOnly Cookies Authentication**
+## 🔐 **Autenticazione con httpOnly Cookies**
 
-### **Important: Automatic Cookie Management**
+### **Importante: Gestione Automatica Cookie**
 
-Unlike the previous Bearer token system, authentication now works with **httpOnly cookies**:
+A differenza del sistema precedente con Bearer token, ora l'autenticazione funziona con **httpOnly cookies**:
 
-- ✅ **Automatic**: Cookies are automatically managed by Postman
-- ✅ **Secure**: No need to copy/paste tokens manually
-- ✅ **Transparent**: Cookies are automatically sent with every request
+- ✅ **Automatico**: I cookie vengono gestiti automaticamente da Postman
+- ✅ **Sicuro**: Non devi copiare/incollare token manualmente
+- ✅ **Trasparente**: I cookie vengono inviati automaticamente con ogni richiesta
 
-### **Authentication Flow**
+### **Flusso di Autenticazione**
 
-1. **Register a user** (optional)
-2. **Login** - Cookies are automatically set
-3. **Use protected endpoints** - Cookies are automatically sent
+1. **Registra un utente** (opzionale)
+2. **Fai login** - I cookie vengono impostati automaticamente
+3. **Usa gli endpoint protetti** - I cookie vengono inviati automaticamente
 
-## 📝 **Testing Endpoints**
+## 📝 **Test degli Endpoint**
 
 ### **1. Authentication Endpoints**
 
@@ -84,7 +84,7 @@ Content-Type: application/json
 }
 ```
 
-**Note**: After login, `access_token` and `refresh_token` cookies are automatically set.
+**Nota**: Dopo il login, i cookie `access_token` e `refresh_token` vengono impostati automaticamente.
 
 ### **2. User Profile Endpoints**
 
@@ -128,7 +128,7 @@ GET {{base_url}}/security/download-data
 
 ### **4. Admin Endpoints**
 
-**Note**: Requires admin role.
+**Nota**: Richiedono ruolo admin.
 
 #### **Get Users**
 ```http
@@ -152,32 +152,32 @@ GET {{base_url}}/resilience/status
 POST {{base_url}}/resilience/backup
 ```
 
-## 🔧 **Advanced Configuration**
+## 🔧 **Configurazione Avanzata**
 
 ### **Cookie Management in Postman**
 
-Postman automatically manages cookies, but you can view them:
+Postman gestisce automaticamente i cookie, ma puoi visualizzarli:
 
-1. Go to **Cookies** in the sidebar
-2. Select your domain (e.g., `localhost:3000`)
-3. View the set cookies:
+1. Vai su **Cookies** nella barra laterale
+2. Seleziona il tuo dominio (es. `localhost:3000`)
+3. Visualizza i cookie impostati:
    - `access_token`
    - `refresh_token`
 
 ### **Environment Variables**
 
-The collection uses these variables:
+La collezione utilizza queste variabili:
 
-- `{{base_url}}` - API base URL
-- `{{user_uuid}}` - User UUID (automatically set after login)
-- `{{session_id}}` - Session ID (automatically set after login)
+- `{{base_url}}` - URL base dell'API
+- `{{user_uuid}}` - UUID dell'utente (impostato automaticamente dopo login)
+- `{{session_id}}` - ID della sessione (impostato automaticamente dopo login)
 
 ### **Test Scripts**
 
-Each request includes automatic tests:
+Ogni richiesta include test automatici:
 
 ```javascript
-// Basic test for all requests
+// Test di base per tutte le richieste
 pm.test('Response time is less than 5000ms', function () {
     pm.expect(pm.response.responseTime).to.be.below(5000);
 });
@@ -188,85 +188,85 @@ pm.test('Response has success field', function () {
 });
 ```
 
-## 🚨 **Troubleshooting**
+## 🚨 **Risoluzione Problemi**
 
-### **Cookies not being sent**
+### **Cookie non vengono inviati**
 
-1. Verify the URL is correct
-2. Make sure the server is running
-3. Check for CORS errors
+1. Verifica che l'URL sia corretto
+2. Assicurati che il server sia in esecuzione
+3. Controlla che non ci siano errori CORS
 
-### **401 Unauthorized Error**
+### **Errore 401 Unauthorized**
 
-1. Login first to set cookies
-2. Verify cookies are present
-3. Check if token has expired
+1. Fai prima il login per impostare i cookie
+2. Verifica che i cookie siano presenti
+3. Controlla che il token non sia scaduto
 
-### **403 Forbidden Error**
+### **Errore 403 Forbidden**
 
-1. Verify you have necessary permissions
-2. For admin endpoints, make sure you're logged in as admin
-3. Check user role
+1. Verifica di avere i permessi necessari
+2. Per endpoint admin, assicurati di essere loggato come admin
+3. Controlla il ruolo dell'utente
 
-## 📊 **Monitoring and Debug**
+## 📊 **Monitoraggio e Debug**
 
-### **Postman Console**
+### **Console di Postman**
 
-Use the console to see:
-- Complete HTTP requests
-- Cookies sent and received
-- Response headers
+Usa la console per vedere:
+- Richieste HTTP complete
+- Cookie inviati e ricevuti
+- Headers di risposta
 
 ### **Test Results**
 
-Each request shows:
+Ogni richiesta mostra:
 - ✅ Status code
 - ⏱️ Response time
 - 📊 Test results
 - 📝 Response body
 
-## 🔄 **Recommended Workflow**
+## 🔄 **Workflow Consigliato**
 
-### **1. Initial Setup**
-1. Import the collection
-2. Configure environment
-3. Start backend server
+### **1. Setup Iniziale**
+1. Importa la collezione
+2. Configura l'environment
+3. Avvia il server backend
 
-### **2. Authentication Testing**
-1. Register a new user
-2. Login
-3. Verify cookies are set
+### **2. Test di Autenticazione**
+1. Registra un nuovo utente
+2. Fai login
+3. Verifica che i cookie siano impostati
 
-### **3. Endpoint Testing**
-1. Test public endpoints
-2. Test protected endpoints
-3. Test admin endpoints (if applicable)
+### **3. Test degli Endpoint**
+1. Testa gli endpoint pubblici
+2. Testa gli endpoint protetti
+3. Testa gli endpoint admin (se applicabile)
 
-### **4. Security Testing**
-1. Test security logs
-2. Test session management
-3. Test GDPR data export
+### **4. Test di Sicurezza**
+1. Testa i log di sicurezza
+2. Testa la gestione sessioni
+3. Testa l'export dati GDPR
 
-## 📱 **Complete Collection**
+## 📱 **Collezione Completa**
 
-The collection includes:
+La collezione include:
 
-- **Authentication** (9 endpoints)
-- **User Profile** (2 endpoints)
-- **Security** (6 endpoints)
-- **Admin** (5 endpoints)
-- **Resilience** (4 endpoints)
+- **Authentication** (9 endpoint)
+- **User Profile** (2 endpoint)
+- **Security** (6 endpoint)
+- **Admin** (5 endpoint)
+- **Resilience** (4 endpoint)
 
-**Total**: 26 fully configured endpoints
+**Totale**: 26 endpoint completamente configurati
 
 ## 🎯 **Best Practices**
 
-1. **Always use environment** to manage variables
-2. **Test in sequence** - auth first, then protected endpoints
-3. **Verify cookies** after login
-4. **Use automatic tests** to validate responses
-5. **Keep collection updated** with API changes
+1. **Usa sempre l'environment** per gestire le variabili
+2. **Testa in sequenza** - prima auth, poi endpoint protetti
+3. **Verifica i cookie** dopo il login
+4. **Usa i test automatici** per validare le risposte
+5. **Mantieni aggiornata** la collezione con le modifiche API
 
 ---
 
-**Pandom Stack Postman Collection** - Complete collection for testing the API with httpOnly cookie authentication.
+**Pandom Stack Postman Collection** - Collezione completa per testare l'API con autenticazione httpOnly cookies.

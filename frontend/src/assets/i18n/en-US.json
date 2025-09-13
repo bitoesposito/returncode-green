@@ -162,6 +162,8 @@
     "yes": "Yes"
   },
   "dashboard": {
+    "letsStartLearning": "Let's start learning!",
+    "selectCourse": "Choose a course to start your learning journey",
     "confirm-dialog": {
       "create": {
         "cancel": "Cancel",

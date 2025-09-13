@@ -1,0 +1,59 @@
+<!-- Course Card Container -->
+<div class="course-card border-2 border-round-md surface-border p-3 cursor-pointer hover:surface-ground transition-colors h-full" (click)="router.navigate(['/quiz'])">
+    <!-- Course Thumbnail Placeholder -->
+    <div class="course-thumbnail w-full h-8rem bg-gray-100 border-round mb-3 flex align-items-center justify-content-center">
+        <i class="pi pi-book text-4xl text-gray-400"></i>
+    </div>
+    
+    <!-- Course Information -->
+    <div class="course-info flex flex-column gap-2">
+        <!-- Course Title -->
+        <h3 class="text-lg font-bold text-900 m-0">Corso di Angular</h3>
+        
+        <!-- Course Description -->
+        <p class="text-sm text-600 m-0 line-height-3">Impara Angular da zero: componenti, servizi, routing e molto altro</p>
+        
+        <!-- Course Meta Information -->
+        <div class="course-meta flex flex-column gap-2 mt-2">
+            <!-- Difficulty and Duration -->
+            <div class="flex align-items-center gap-3">
+                <span class="course-difficulty px-2 py-1 border-round text-xs font-semibold difficulty-intermediate">
+                    Intermedio
+                </span>
+                <span class="course-duration text-xs text-600">
+                    <i class="pi pi-clock mr-1"></i>
+                    20 ore
+                </span>
+            </div>
+            
+            <!-- Category -->
+            <div class="course-category">
+                <span class="text-xs text-500">
+                    <i class="pi pi-tag mr-1"></i>
+                    Web Development
+                </span>
+            </div>
+            
+            <!-- Rating and Enrolled Count -->
+            <div class="flex align-items-center justify-content-between">
+                <!-- Rating Stars -->
+                <div class="course-rating flex align-items-center gap-1">
+                    <span class="text-xs text-600">4.5</span>
+                    <div class="flex gap-1">
+                        <i class="pi pi-star-fill text-yellow-500 text-xs"></i>
+                        <i class="pi pi-star-fill text-yellow-500 text-xs"></i>
+                        <i class="pi pi-star-fill text-yellow-500 text-xs"></i>
+                        <i class="pi pi-star-fill text-yellow-500 text-xs"></i>
+                        <i class="pi pi-star text-gray-300 text-xs"></i>
+                    </div>
+                </div>
+                
+                <!-- Enrolled Count -->
+                <span class="text-xs text-600">
+                    <i class="pi pi-users mr-1"></i>
+                    100 studenti
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

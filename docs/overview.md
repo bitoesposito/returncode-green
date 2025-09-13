@@ -290,4 +290,4 @@ Pandom Stack follows a **layered architecture** pattern with clear separation of
 ### 🛠️ **Development & API**
 - [**API Reference**](./api/api-reference.md) - Complete API documentation
 - [**Postman Collection**](./api/pandom-postman-collection.json) - Complete Postman collection
-- [**Postman Setup Guide**](./api/postman-setup-guide.md) - Postman configuration guide
+- [**Postman Setup Guide**](./api/postman-setup-guide.md) - Postman configuration guide 

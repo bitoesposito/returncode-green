@@ -1,12 +1,12 @@
 # 🚀 Production Deployment Guide
 
-## 📋 Overview
+## 📋 Panoramica
 
-This guide provides complete instructions for deploying **Pandom Stack** in a production environment with focus on security, performance, scalability, and monitoring.
+Questa guida fornisce istruzioni complete per il deployment di **Pandom Stack** in ambiente di produzione con focus su sicurezza, performance, scalabilità e monitoring.
 
-## 🏗️ **Production Architecture**
+## 🏗️ **Architettura di Produzione**
 
-### **Recommended Infrastructure**
+### **Infrastruttura Raccomandata**
 
 ```mermaid
 graph TB
@@ -62,12 +62,12 @@ graph TB
     BE3 --> PROMETHEUS
 ```
 
-### **System Requirements**
+### **Requisiti di Sistema**
 
-#### **Recommended Servers**
+#### **Server Raccomandati**
 
-| Component | CPU | RAM | Storage | Network |
-|-----------|-----|-----|---------|---------|
+| Componente | CPU | RAM | Storage | Network |
+|------------|-----|-----|---------|---------|
 | **Load Balancer** | 2 cores | 4GB | 20GB SSD | 1Gbps |
 | **Frontend** | 2 cores | 4GB | 20GB SSD | 1Gbps |
 | **Backend** | 4 cores | 8GB | 50GB SSD | 1Gbps |
@@ -75,89 +75,89 @@ graph TB
 | **MinIO** | 4 cores | 8GB | 500GB SSD | 1Gbps |
 | **Monitoring** | 2 cores | 4GB | 100GB SSD | 1Gbps |
 
-#### **Minimum Requirements**
+#### **Requisiti Minimi**
 
-| Component | CPU | RAM | Storage | Network |
-|-----------|-----|-----|---------|---------|
+| Componente | CPU | RAM | Storage | Network |
+|------------|-----|-----|---------|---------|
 | **Load Balancer** | 1 core | 2GB | 10GB SSD | 100Mbps |
 | **Frontend** | 1 core | 2GB | 10GB SSD | 100Mbps |
 | **Backend** | 2 cores | 4GB | 20GB SSD | 100Mbps |
 | **Database** | 4 cores | 8GB | 100GB SSD | 100Mbps |
 | **MinIO** | 2 cores | 4GB | 200GB SSD | 100Mbps |
 
-## 🔧 **Environment Preparation**
+## 🔧 **Preparazione Ambiente**
 
-### **1. Server Setup**
+### **1. Setup Server**
 
 ```bash
-# Update system
+# Aggiorna sistema
 sudo apt update && sudo apt upgrade -y
 
-# Install Docker
+# Installa Docker
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo usermod -aG docker $USER
 
-# Install Docker Compose
+# Installa Docker Compose
 sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-# Install utilities
+# Installa utilità
 sudo apt install -y git curl wget htop nginx certbot python3-certbot-nginx
 ```
 
-### **2. Firewall Configuration**
+### **2. Configurazione Firewall**
 
 ```bash
-# Configure UFW
+# Configura UFW
 sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
-# Essential ports
+# Porte essenziali
 sudo ufw allow 22/tcp    # SSH
 sudo ufw allow 80/tcp    # HTTP
 sudo ufw allow 443/tcp   # HTTPS
 
-# Monitoring ports (optional)
+# Porte per monitoring (opzionale)
 sudo ufw allow 3000/tcp  # Grafana
 sudo ufw allow 9090/tcp  # Prometheus
 ```
 
-### **3. SSL/TLS Setup**
+### **3. Setup SSL/TLS**
 
 ```bash
-# Install Certbot
+# Installa Certbot
 sudo apt install certbot python3-certbot-nginx
 
-# Generate SSL certificates
+# Genera certificati SSL
 sudo certbot --nginx -d yourdomain.com -d api.yourdomain.com
 
-# Configure auto-renewal
+# Configura auto-renewal
 sudo crontab -e
-# Add: 0 12 * * * /usr/bin/certbot renew --quiet
+# Aggiungi: 0 12 * * * /usr/bin/certbot renew --quiet
 ```
 
-## 🐳 **Docker Deployment**
+## 🐳 **Deployment Docker**
 
-### **1. Environment Configuration**
+### **1. Configurazione Environment**
 
 ```bash
-# Create project directory
+# Crea directory progetto
 sudo mkdir -p /opt/pandom-stack
 cd /opt/pandom-stack
 
 # Clone repository
 sudo git clone <repository-url> .
 
-# Create environment file
+# Crea file environment
 sudo nano .env
 ```
 
-### **2. Production Environment**
+### **2. Environment Production**
 
 ```bash
-# .env for production
+# .env per production
 NODE_ENV=production
 DEBUG=false
 LOG_LEVEL=info
@@ -168,7 +168,7 @@ POSTGRES_PASSWORD=$(openssl rand -base64 32)
 POSTGRES_DB=pandom_prod_db
 DATABASE_URL=postgres://pandom_prod_user:${POSTGRES_PASSWORD}@postgres:5432/pandom_prod_db
 
-# JWT and Sessions
+# JWT e Sessioni
 JWT_SECRET=$(openssl rand -base64 64)
 JWT_EXPIRATION=15m
 JWT_REFRESH_EXPIRATION=7d
@@ -201,7 +201,7 @@ SMTP_USER=noreply@yourdomain.com
 SMTP_PASS=your-smtp-password
 SMTP_FROM=noreply@yourdomain.com
 
-# Security
+# Sicurezza
 SECURITY_HEADERS_ENABLED=true
 HTTPS_ENABLED=true
 RATE_LIMIT_MAX_ATTEMPTS=5
@@ -212,7 +212,7 @@ PROMETHEUS_ENABLED=true
 GRAFANA_ENABLED=true
 ```
 
-### **3. Nginx Configuration**
+### **3. Configurazione Nginx**
 
 ```nginx
 # /etc/nginx/sites-available/pandom-stack
@@ -304,22 +304,22 @@ server {
 }
 ```
 
-### **4. Start Services**
+### **4. Avvio Servizi**
 
 ```bash
-# Enable Nginx site
+# Abilita sito Nginx
 sudo ln -s /etc/nginx/sites-available/pandom-stack /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 
-# Start Docker services
+# Avvia servizi Docker
 sudo docker-compose -f docker-compose.prod.yml up -d
 
-# Check status
+# Verifica stato
 sudo docker-compose -f docker-compose.prod.yml ps
 ```
 
-## 📊 **Monitoring and Logging**
+## 📊 **Monitoring e Logging**
 
 ### **1. Setup Prometheus**
 
@@ -436,29 +436,29 @@ volumes:
   elasticsearch_data:
 ```
 
-## 🔒 **Production Security**
+## 🔒 **Sicurezza Produzione**
 
 ### **1. Web Application Firewall**
 
 ```bash
-# Install ModSecurity
+# Installa ModSecurity
 sudo apt install libapache2-mod-security2
 
-# Configure rules
+# Configura regole
 sudo cp /etc/modsecurity/modsecurity.conf-recommended /etc/modsecurity/modsecurity.conf
 sudo nano /etc/modsecurity/modsecurity.conf
 
-# Enable in Nginx
+# Abilita in Nginx
 sudo apt install nginx-module-security
 ```
 
 ### **2. Intrusion Detection**
 
 ```bash
-# Install Fail2Ban
+# Installa Fail2Ban
 sudo apt install fail2ban
 
-# Configure for Nginx
+# Configura per Nginx
 sudo nano /etc/fail2ban/jail.local
 ```
 
@@ -483,7 +483,7 @@ maxretry = 10
 ### **3. Security Headers**
 
 ```nginx
-# Add to Nginx config
+# Aggiungi a Nginx config
 add_header X-Frame-Options DENY;
 add_header X-Content-Type-Options nosniff;
 add_header X-XSS-Protection "1; mode=block";
@@ -493,7 +493,7 @@ add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsaf
 add_header Permissions-Policy "geolocation=(), microphone=(), camera=()";
 ```
 
-## 🔄 **Backup and Recovery**
+## 🔄 **Backup e Recovery**
 
 ### **1. Automated Backup**
 
@@ -628,7 +628,7 @@ location /api/ {
 }
 ```
 
-## 🚨 **Alerting and Incident Response**
+## 🚨 **Alerting e Incident Response**
 
 ### **1. Alert Rules**
 
@@ -744,4 +744,4 @@ top -bn1 | grep "Cpu(s)" | awk '{print $2}' | cut -d'%' -f1
 
 ---
 
-**Pandom Stack Production** - Enterprise-grade deployment with focus on security, performance, scalability, and monitoring.
+**Pandom Stack Production** - Deployment enterprise-grade con focus su sicurezza, performance, scalabilità e monitoring.

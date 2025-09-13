@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
 import { ToastModule } from 'primeng/toast';
 import { ThemeService } from '../../services/theme.service';
@@ -9,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { MessageService } from 'primeng/api';
 import { CookieAuthService } from '../../services/cookie-auth.service';
+import { CourseCardsComponent } from '../../shared/course-cards/course-cards.component';
 
 /**
  * Dashboard Component
@@ -18,11 +19,14 @@ import { CookieAuthService } from '../../services/cookie-auth.service';
  */
 @Component({
   selector: 'app-dashboard',
+  standalone: true,
   imports: [
     CommonModule,
     ToastModule,
     TranslateModule,
-    NavBarComponent
+    NavBarComponent,
+    RouterModule,
+    CourseCardsComponent
   ],
   providers: [
     MessageService,
@@ -39,7 +43,8 @@ export class DashboardComponent {
   constructor(
     private notificationService: NotificationService,
     private themeService: ThemeService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {
     // Initialize observable streams
     this.isDarkMode$ = this.themeService.isDarkMode$;
